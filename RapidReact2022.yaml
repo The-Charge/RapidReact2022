@@ -30,7 +30,7 @@ Children:
         validators: null
         value: *id001
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: false}
+        name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
     Name: Autonomous Command
   Properties: {}
@@ -57,7 +57,7 @@ Properties:
   Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\tjneu\',
     extension: null, folder: true, name: Wiring file location, validators: null, value: .\}
   Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\tjneu\FRCProjects',
-    extension: null, folder: true, name: Export Directory, validators: null, value: .\}
+    extension: null, folder: true, name: Export Directory, validators: null, value: ..\}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
 Base: Robot
