@@ -52,6 +52,7 @@ public class TankDrive extends CommandBase {
     @Override
     public void initialize() {
         m_drivetrain.setControlMode(ControlMode.PercentOutput);
+        m_drivetrain.initializeMotors();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
