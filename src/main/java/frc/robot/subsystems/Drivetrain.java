@@ -121,7 +121,14 @@ rightBackMotor = new WPI_TalonSRX(6);
         leftFrontMotor.set(l);
         rightFrontMotor.set(r);
     }
-
+    public void stopL()
+    {
+        leftFrontMotor.set(0);
+    }
+    public void stopR()
+    {
+        rightFrontMotor.set(0);
+    }
     public void stop() {
         leftFrontMotor.set(0);
         rightFrontMotor.set(0);
@@ -140,5 +147,9 @@ rightBackMotor = new WPI_TalonSRX(6);
     public void resetEncoders() {
         leftFrontMotor.setSelectedSensorPosition(0);
         rightFrontMotor.setSelectedSensorPosition(0);
+    }
+    public void setPercentVBus() {
+        leftFrontMotor.set(ControlMode.PercentOutput, 0);
+        rightFrontMotor.set(ControlMode.PercentOutput, 0);
     }
 }
