@@ -363,7 +363,7 @@ Children:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
-    Name: InvertDrive
+    Name: ToggleLockStraight
   - Children: []
     Properties:
       Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
@@ -384,8 +384,8 @@ Children:
         value: *id008
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
-    Base: Command
-    Name: ToggleLockStraight
+    Base: Instant Command
+    Name: InvertDrive
   Properties: {}
   Base: Commands
   Name: Commands
