@@ -104,7 +104,7 @@ private final Joystick leftJoystick = new Joystick(0);
 // Create some buttons
 final JoystickButton climbBtn = new JoystickButton(rightJoystick, 2);        
 climbBtn.whenPressed(new Telescope(3, m_climber) ,true);
-    SmartDashboard.putData("climbBtn",new Telescope(3, m_climber) );
+    SmartDashboard.putData("climbBtn",new Telescope(90, m_climber) );
 
 final JoystickButton quarterSpeedBtn = new JoystickButton(rightJoystick, 1);        
 quarterSpeedBtn.toggleWhenPressed(new QuarterSpeed( m_drivetrain ) ,true);
