@@ -160,7 +160,7 @@ rightTeleMotor = new WPI_TalonFX(2);
 
 
 	public void initTeleMotionMagic(double dist){
-		m_distance = dist * TICKSPERDEGREE;
+		m_distance = dist * TICKSPERFOOT;
 
 		leftTeleMotor.configFactoryDefault();
 		rightTeleMotor.configFactoryDefault();

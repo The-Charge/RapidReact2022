@@ -51,7 +51,7 @@ public class Telescope extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_climber.resetTeleEncoders();
+       // m_climber.resetTeleEncoders();
         m_climber.initTeleMotionMagic(m_distance);
     }
 
