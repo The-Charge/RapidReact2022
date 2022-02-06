@@ -376,7 +376,7 @@ Children:
           name: Command
           type: Command
           validators: *id004
-          value: Drive x Feet
+          value: DriveXFeet
         Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
           name: Timeout, validators: null, value: 0.0}
         Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
@@ -388,7 +388,7 @@ Children:
           validators: null
           value: whenPressed
       Base: Joystick Button
-      Name: drivexfeet
+      Name: driveXFeetBtn
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: *id006
@@ -598,9 +598,9 @@ Children:
         validators: null
         value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
-    Name: Drive x Feet
+    Name: DriveXFeet
   Properties: {}
   Base: Commands
   Name: Commands
@@ -622,12 +622,10 @@ Properties:
       Number, validators: null, value: 2619}
   Export Subsystems: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Subsystems, validators: null, value: true}
-  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Programmer
-      5\', extension: null, folder: true, name: Wiring file location, validators: null,
-    value: .\}
-  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Programmer
-      5\FRCProjects', extension: null, folder: true, name: Export Directory, validators: null,
-    value: ..\}
+  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\tjneu\',
+    extension: null, folder: true, name: Wiring file location, validators: null, value: .\}
+  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\tjneu\FRCProjects',
+    extension: null, folder: true, name: Export Directory, validators: null, value: ..\}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
 Base: Robot
