@@ -13,8 +13,8 @@ Children:
           default: '2'
           name: CAN ID
           validators: &id002 [CANID]
-          value: '1'
-      Base: Talon SRX
+          value: '13'
+      Base: Talon FX
       Name: leftFrontMotor
     - Children: []
       Properties:
@@ -23,8 +23,8 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '2'
-      Base: Talon SRX
+          value: '14'
+      Base: Talon FX
       Name: leftMidMotor
     - Children: []
       Properties:
@@ -33,8 +33,8 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '3'
-      Base: Talon SRX
+          value: '15'
+      Base: Talon FX
       Name: leftBackMotor
     - Children: []
       Properties:
@@ -43,8 +43,8 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '4'
-      Base: Talon SRX
+          value: '1'
+      Base: Talon FX
       Name: rightFrontMotor
     - Children: []
       Properties:
@@ -53,8 +53,8 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '5'
-      Base: Talon SRX
+          value: '2'
+      Base: Talon FX
       Name: rightMidMotor
     - Children: []
       Properties:
@@ -63,8 +63,8 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '6'
-      Base: Talon SRX
+          value: '3'
+      Base: Talon FX
       Name: rightBackMotor
     Properties:
       Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
@@ -352,6 +352,43 @@ Children:
           value: whenPressed
       Base: Joystick Button
       Name: shiftLowBtn
+    - Children: []
+      Properties:
+        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
+          name: Interruptible, validators: null, value: true}
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: rightJoystick}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value:
+          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: distance,
+            type: double, value: '4'}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id003
+          default: '1'
+          name: Button
+          validators: null
+          value: '4'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id004
+          value: Drive x Feet
+        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
+          name: Timeout, validators: null, value: 0.0}
+        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Add Timeout, validators: null, value: false}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id005
+          default: whenPressed
+          name: When to Run
+          validators: null
+          value: whenPressed
+      Base: Joystick Button
+      Name: drivexfeet
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: *id006
@@ -541,6 +578,29 @@ Children:
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Instant Command
     Name: ShiftLow
+  - Children: []
+    Properties:
+      Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Autonomous Selection, validators: null, value: false}
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value:
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: distance, type: double}
+      Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Run When Disabled, validators: null, value: false}
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Drivetrain}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: []
+        name: Parameter presets
+        validators: null
+        value: []
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: Drive x Feet
   Properties: {}
   Base: Commands
   Name: Commands
@@ -562,10 +622,12 @@ Properties:
       Number, validators: null, value: 2619}
   Export Subsystems: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Subsystems, validators: null, value: true}
-  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\tjneu\',
-    extension: null, folder: true, name: Wiring file location, validators: null, value: .\}
-  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\tjneu\FRCProjects',
-    extension: null, folder: true, name: Export Directory, validators: null, value: ..\}
+  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Programmer
+      5\', extension: null, folder: true, name: Wiring file location, validators: null,
+    value: .\}
+  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Programmer
+      5\FRCProjects', extension: null, folder: true, name: Export Directory, validators: null,
+    value: ..\}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
 Base: Robot
