@@ -330,12 +330,22 @@ rightTeleMotor = new WPI_TalonFX(2);
     }
 
 	public void resetPosBottom() {
-    	leftTeleMotor.setSelectedSensorPosition(0, 0, kTimeoutMs);
-		rightTeleMotor.setSelectedSensorPosition(0, 0, kTimeoutMs);
+    	leftTeleMotor.setSelectedSensorPosition(TICKS_BOTTOM, 0, kTimeoutMs);
+		rightTeleMotor.setSelectedSensorPosition(TICKS_BOTTOM, 0, kTimeoutMs);
     }
 
 	public double getMotorOutput(){
 		return leftTeleMotor.get();
 	}
 
+	public void overrideSoftLimit(){
+		changeSoftLimitEnable(true);
+		leftTeleMotor.set(0.5);
+		rightTeleMotor.set(0.5);
+	}
+
+	public void changeSoftLimitEnable(boolean change){
+		leftTeleMotor.overrideSoftLimitsEnable(change);
+		rightTeleMotor.overrideSoftLimitsEnable(change);
+	}
 }
