@@ -322,8 +322,8 @@ rightTeleMotor = new WPI_TalonFX(2);
     }
 
 	public void resetPosBottom() {
-    	leftTeleMotor.setSelectedSensorPosition(0, 0, kTimeoutMs);
-		rightTeleMotor.setSelectedSensorPosition(0, 0, kTimeoutMs);
+    	leftTeleMotor.setSelectedSensorPosition(TICKS_BOTTOM, 0, kTimeoutMs);
+		rightTeleMotor.setSelectedSensorPosition(TICKS_BOTTOM, 0, kTimeoutMs);
     }
 
 	public double getMotorOutput(){
