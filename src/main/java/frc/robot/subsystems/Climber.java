@@ -160,6 +160,14 @@ rightTeleMotor = new WPI_TalonFX(2);
 
 
 	public void initTeleMotionMagic(double dist){
+		leftTeleMotor.configForwardSoftLimitThreshold(TICKS_TOP);
+		rightTeleMotor.configForwardSoftLimitThreshold(TICKS_TOP);
+		leftTeleMotor.configReverseSoftLimitThreshold(TICKS_BOTTOM);
+		rightTeleMotor.configReverseSoftLimitThreshold(TICKS_BOTTOM);
+
+		leftTeleMotor.configForwardSoftLimitEnable(true);
+		rightTeleMotor.configForwardSoftLimitEnable(true);
+
 		m_distance = dist * TICKSPERFOOT;
 
 		leftTeleMotor.configFactoryDefault();
