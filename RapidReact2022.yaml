@@ -33,7 +33,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '26'
+          value: '11'
       Base: Talon SRX
       Name: leftBackMotor
     - Children: []
@@ -43,7 +43,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '3'
+          value: '30'
       Base: Talon SRX
       Name: rightFrontMotor
     - Children: []
@@ -93,7 +93,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: &id004 [CANID]
-          value: '1'
+          value: '22'
       Base: Talon FX
       Name: rightPivotMotor
     - Children: []
@@ -113,7 +113,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id004
-          value: '14'
+          value: '1'
       Base: Talon FX
       Name: leftTeleMotor
     - Children: []
@@ -315,13 +315,13 @@ Children:
           validators: null
           value:
           - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: distance,
-            type: double, value: '3'}
+            type: double, value: '0'}
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id005
           default: '1'
           name: Button
           validators: null
-          value: '5'
+          value: '3'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
@@ -339,7 +339,7 @@ Children:
           validators: null
           value: whenPressed
       Base: Joystick Button
-      Name: teleBtn
+      Name: RetractTeleBtn
     - Children: []
       Properties:
         Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
@@ -387,13 +387,13 @@ Children:
           validators: null
           value:
           - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: distance,
-            type: double, value: '0'}
+            type: double, value: '3'}
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id005
           default: '1'
           name: Button
           validators: null
-          value: '3'
+          value: '5'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
@@ -411,7 +411,7 @@ Children:
           validators: null
           value: whenPressed
       Base: Joystick Button
-      Name: RetractTeleBtn
+      Name: ExtendTeleBtn
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: *id008
