@@ -168,13 +168,15 @@ rightTeleMotor = new WPI_TalonSRX(2);
 		leftTeleMotor.setNeutralMode(NeutralMode.Brake);
 		rightTeleMotor.setNeutralMode(NeutralMode.Brake);
 
-		// leftTeleMotor.configForwardSoftLimitThreshold(TICKS_TOP);
-		// rightTeleMotor.configForwardSoftLimitThreshold(TICKS_TOP);
-		// leftTeleMotor.configReverseSoftLimitThreshold(TICKS_BOTTOM);
-		// rightTeleMotor.configReverseSoftLimitThreshold(TICKS_BOTTOM);
+		 leftTeleMotor.configForwardSoftLimitThreshold(SAFETY_TICKS_TOP);
+		 rightTeleMotor.configForwardSoftLimitThreshold(SAFETY_TICKS_TOP);
+		leftTeleMotor.configReverseSoftLimitThreshold(SAFETY_TICKS_BOTTOM);
+		rightTeleMotor.configReverseSoftLimitThreshold(SAFETY_TICKS_BOTTOM);
 
-		// leftTeleMotor.configForwardSoftLimitEnable(true);
-		// rightTeleMotor.configForwardSoftLimitEnable(true);
+		leftTeleMotor.configForwardSoftLimitEnable(true);
+		rightTeleMotor.configForwardSoftLimitEnable(true);
+		leftTeleMotor.configReverseSoftLimitEnable(true);
+		rightTeleMotor.configReverseSoftLimitEnable(true);
 
 		m_distance = dist * TICKSPERFOOT;
 
@@ -220,10 +222,6 @@ rightTeleMotor = new WPI_TalonSRX(2);
 
 		rightTeleMotor.configMotionCruiseVelocity(TELE_VEL, kTimeoutMs);
 		rightTeleMotor.configMotionAcceleration(TELE_ACC, kTimeoutMs);
-
-		// /* Zero the sensor once on robot boot up */
-		// leftTeleMotor.setSelectedSensorPosition(0, PID_INDEX, kTimeoutMs);
-		// rightTeleMotor.setSelectedSensorPosition(0, PID_INDEX, kTimeoutMs);
 
 		leftTeleMotor.configMotionSCurveStrength(TELE_SMOOTHING);
 		rightTeleMotor.configMotionSCurveStrength(TELE_SMOOTHING);
@@ -273,8 +271,8 @@ rightTeleMotor = new WPI_TalonSRX(2);
 	}
 
 	public void run(double l, double r){
-		leftPivotMotor.set(l);
-		rightPivotMotor.set(r);
+		leftTeleMotor.set(l);
+		rightTeleMotor.set(r);
 	}
 
 	public void stopPivot(){
@@ -307,17 +305,16 @@ rightTeleMotor = new WPI_TalonSRX(2);
 
 	public boolean pastLimitSwitch(){
 		if (checkTopLimitSwitch()) {
-    		return (getMotorOutput()>0);
+    		return true;
     	}
     	else if (checkBottomLimitSwitch()) {
-    		return (getMotorOutput()<0);
+    		return true;
     	}
     	return false;
 	}
 
 	public boolean checkTopLimitSwitch() {
     	if (leftTeleMotor.getSensorCollection().isFwdLimitSwitchClosed() || rightTeleMotor.getSensorCollection().isFwdLimitSwitchClosed()) {
-    		//resetPosTop();
     		return true;
     	}
     	return false;
