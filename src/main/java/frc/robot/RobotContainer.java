@@ -111,7 +111,7 @@ resetTeleBtn.whenPressed(new ResetTelescope( m_climber ) ,true);
     SmartDashboard.putData("ResetTeleBtn",new ResetTelescope( m_climber ) );
 
 final JoystickButton retractTeleBtn = new JoystickButton(rightJoystick, 3);        
-retractTeleBtn.whenPressed(new TelescopeClimber(.1, m_climber) ,true);
+retractTeleBtn.whenPressed(new TelescopeClimber(0, m_climber) ,true);
     SmartDashboard.putData("RetractTeleBtn",new TelescopeClimber(0, m_climber) );
 
 final JoystickButton pivotBtn = new JoystickButton(rightJoystick, 2);        
