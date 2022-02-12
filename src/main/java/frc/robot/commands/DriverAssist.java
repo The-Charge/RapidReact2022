@@ -91,7 +91,7 @@ public class DriverAssist extends CommandBase {
         if(isRedTeam){
             chase(distance_red, angle_red);
         }
-        else{
+        else if(!isRedTeam){
             chase(distance_blue, angle_blue);
         }
         //https://github.com/The-Charge/SulfuricAcid2021/blob/master/src/main/java/frc/robot/commands/RunTurretVision.java
@@ -115,6 +115,18 @@ public class DriverAssist extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
+        NetworkTableInstance inst = NetworkTableInstance.getDefault();
+        NetworkTable table = inst.getTable("ML");
+        NetworkTableEntry area_red_entry = table.getEntry("area_red");
+        NetworkTableEntry area_blue_entry = table.getEntry("area_blue");
+        double area_red = area_red_entry.getDouble(0.0);
+        double area_blue = area_blue_entry.getDouble(0.0);
+        if(isRedTeam){
+            return(area_red < 100);
+        }
+        else if(!isRedTeam){
+            return(area_blue < 100);
+        }
         return false;
     }
 
