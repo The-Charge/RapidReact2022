@@ -52,10 +52,7 @@ public class TelescopeClimber extends CommandBase {
     @Override
     public void initialize() {
         m_climber.initTeleMotionMagic(m_distance);
-        if(m_distance > 1)
-            System.out.println("\n\n\n\n\n\nextending arm");
-        else
-            System.out.println("retracting arm");
+        m_climber.brakemodeOn();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
