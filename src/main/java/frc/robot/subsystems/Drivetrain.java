@@ -182,14 +182,6 @@ rightBackMotor = new WPI_TalonFX(3);
 		rightFrontMotor.set(r);
 	}
 
-	public void stopL() {
-		leftFrontMotor.set(0);
-	}
-
-	public void stopR() {
-		rightFrontMotor.set(0);
-	}
-
 	public void stop() {
 		leftFrontMotor.set(0);
 		rightFrontMotor.set(0);
