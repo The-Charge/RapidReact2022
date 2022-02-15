@@ -145,7 +145,7 @@ Children:
           default: '0'
           name: Forward Module (Solenoid)
           validators: [Solenoid]
-          value: '0'
+          value: '1'
         Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: ['0', '1', '2', '3', '4', '5', '6', '7']
           default: '0'
@@ -157,7 +157,7 @@ Children:
           default: CTREPCM
           name: Forward Module Type (Solenoid)
           validators: null
-          value: CTREPCM
+          value: REVPH
         Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: ['0', '1', '2', '3', '4', '5', '6', '7']
           default: '0'
