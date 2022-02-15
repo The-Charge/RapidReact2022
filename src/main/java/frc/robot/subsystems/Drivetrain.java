@@ -99,7 +99,7 @@ leftBackMotor = new WPI_TalonFX(15);
  
  
 
-rightFrontMotor = new WPI_TalonFX(26);
+rightFrontMotor = new WPI_TalonFX(1);
  
  
 
