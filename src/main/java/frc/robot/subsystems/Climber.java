@@ -79,6 +79,9 @@ private WPI_TalonSRX rightTeleMotor;
 	private static final double PIVOT_kF = 0;
 	private static final int PIVOT_SMOOTHING = 4;
 	private static final int TELE_SMOOTHING = 4;
+
+
+	private static final double MAX_TEMP = 35;
 	/**
 	*
 	*/
@@ -313,4 +316,12 @@ rightTeleMotor = new WPI_TalonSRX(19);
 		leftTeleMotor.setNeutralMode(NeutralMode.Brake);
 		rightTeleMotor.setNeutralMode(NeutralMode.Brake);
 	}
+
+	public boolean checkTemp() {
+        SmartDashboard.putNumber("Temp", leftPivotMotor.getTemperature());
+        if (leftPivotMotor.getTemperature() > MAX_TEMP || rightPivotMotor.getTemperature() > MAX_TEMP)
+            return true;
+        else
+            return false;
+    }
 }
