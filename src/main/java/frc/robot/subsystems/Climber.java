@@ -267,9 +267,14 @@ rightTeleMotor = new WPI_TalonSRX(19);
 		return (Math.abs(getLeftTeleEncoder() - m_distance) < THRESHOLD || Math.abs(getLeftTeleEncoder() - m_distance) < THRESHOLD);
 	}
 
-	public void run(double l, double r){
+	public void runTele(double l, double r){
 		leftTeleMotor.set(l);
 		rightTeleMotor.set(r);
+	}
+
+	public void runPivot(double l, double r){
+		leftPivotMotor.set(l);
+		rightPivotMotor.set(r);
 	}
 
 	public void stopPivot(){
