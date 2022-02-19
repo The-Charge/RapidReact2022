@@ -40,6 +40,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.SerialPort.Port; //might change to I2C
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -82,8 +83,6 @@ private WPI_TalonFX rightBackMotor;
 
     // Odometry class for tracking robot pose
     public final DifferentialDriveOdometry m_odometry;
-    // private final DifferentialDrive m_diffDrive = new
-    // DifferentialDrive(m_leftMotors, m_rightMotors);
 
     
 	private static boolean isReversed = false;
@@ -226,7 +225,6 @@ rightBackMotor = new WPI_TalonFX(3);
 	
 		SmartDashboard.putNumber("Drivetrain leftSpeed", leftSpeed);
 		SmartDashboard.putNumber("Drivetrain rightSpeed", rightSpeed);
-		run(rightSpeed, leftSpeed);
 
         if (isReversed) {
             l *= -1; //inverse left motor speed
@@ -511,7 +509,6 @@ rightBackMotor = new WPI_TalonFX(3);
         SmartDashboard.putNumber("Right Encoder", rightFrontMotor.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("HEADING", m_odometry.getPoseMeters().getRotation().getDegrees());
         
-        // m_diffDrive.feed();
     }
 
     /**
