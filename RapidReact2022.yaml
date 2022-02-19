@@ -13,7 +13,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: &id002 [CANID]
-          value: '13'
+          value: '1'
       Base: Talon FX
       Name: leftFrontMotor
     - Children: []
@@ -23,17 +23,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '14'
-      Base: Talon FX
-      Name: leftMidMotor
-    - Children: []
-      Properties:
-        CAN ID: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id001
-          default: '2'
-          name: CAN ID
-          validators: *id002
-          value: '15'
+          value: '2'
       Base: Talon FX
       Name: leftBackMotor
     - Children: []
@@ -43,7 +33,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '1'
+          value: '3'
       Base: Talon FX
       Name: rightFrontMotor
     - Children: []
@@ -53,17 +43,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '2'
-      Base: Talon FX
-      Name: rightMidMotor
-    - Children: []
-      Properties:
-        CAN ID: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id001
-          default: '2'
-          name: CAN ID
-          validators: *id002
-          value: '3'
+          value: '4'
       Base: Talon FX
       Name: rightBackMotor
     Properties:
@@ -134,7 +114,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: &id004 [CANID]
-          value: '4'
+          value: '7'
       Base: Talon SRX
       Name: armMotor
     - Children: []
@@ -191,7 +171,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id004
-          value: '18'
+          value: '9'
       Base: Talon SRX
       Name: leftTeleMotor
     - Children: []
@@ -201,7 +181,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id004
-          value: '20'
+          value: '8'
       Base: Talon SRX
       Name: rightTeleMotor
     Properties:
@@ -229,7 +209,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '16'
+          value: '5'
       Base: Talon FX
       Name: leftPivotMotor
     - Children: []
@@ -239,7 +219,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '21'
+          value: '6'
       Base: Talon FX
       Name: rightPivotMotor
     Properties:
