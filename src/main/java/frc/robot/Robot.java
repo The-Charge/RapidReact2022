@@ -60,6 +60,7 @@ public class Robot extends TimedRobot {
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run();
 
+        SmartDashboard.putNumber("GYRO", RobotContainer.getInstance().m_drivetrain.getHeading());
         SmartDashboard.putNumber("LeftEnc", RobotContainer.getInstance().m_drivetrain.getLeftEncoder());
         SmartDashboard.putNumber("RightEnc", RobotContainer.getInstance().m_drivetrain.getRightEncoder());
     }
