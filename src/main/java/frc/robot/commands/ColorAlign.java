@@ -65,6 +65,10 @@ public class ColorAlign extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+      m_colorMatcher.addColorMatch(kBlueTarget);
+      m_colorMatcher.addColorMatch(kGreenTarget);
+      m_colorMatcher.addColorMatch(kRedTarget);
+      m_colorMatcher.addColorMatch(kYellowTarget);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
