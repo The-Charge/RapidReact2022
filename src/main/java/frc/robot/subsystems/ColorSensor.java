@@ -56,10 +56,10 @@ public class ColorSensor extends SubsystemBase {
     private final int kMultiplexerAddress = 0x70; //Change if we have a different address
     private static I2C multiplexer; //multiplexer, duh
     private final int port; //port where the colorsensor is located?
-    
+    static int currentPort;
 
     public ColorSensor(I2C.Port i2cPort, int port) {
-        if (multiplexer == null) {
+        if (true || multiplexer == null) {
           multiplexer = new I2C(i2cPort, kMultiplexerAddress);
         }
         this.port = port;
@@ -68,6 +68,11 @@ public class ColorSensor extends SubsystemBase {
       }
       public void setChannel() { //Sets the channel for whichever color sensor side it is...
         multiplexer.write(kMultiplexerAddress, 1 << port);
+        SmartDashboard.putNumber("BIT", 1 << port);
+        // if (port != currentPort){
+        //   currentPort = port;
+        //   multiplexer.write(kMultiplexerAddress, 1 << port);
+        // }
       }
       public Color getColor() {
         setChannel();
@@ -105,6 +110,18 @@ public class ColorSensor extends SubsystemBase {
       }
       public String getColorString(){ //returns a string of a color
         return colorString;
+      }
+
+      public boolean addressOnly(){
+        return multiplexer.addressOnly();
+      }
+
+      public int devAddress(){
+        return multiplexer.getDeviceAddress();
+      }
+
+      public int getPort(){
+        return multiplexer.getPort();
       }
     
 }
