@@ -87,19 +87,28 @@ public class DriverAssist extends CommandBase {
         double rightSpeed = -RobotContainer.getInstance().getrightJoystick().getY();
         double leftSpeed = -RobotContainer.getInstance().getleftJoystick().getY();
         double speed = (leftSpeed + rightSpeed)/2;
-        if(Math.abs(angle) < 1) m_drivetrain.run(speed, speed);
-        else if(distance == -1) m_drivetrain.run(speed/1.5, speed/1.5);
+        speed = 0.6;
+        m_drivetrain.run(speed/1.2, speed/1.2);
+        /*if(distance == -1){
+            if(RobotContainer.getInstance().getrightJoystick().getX() > 0.2) m_drivetrain.run(0.4, -0.2);
+            else if(RobotContainer.getInstance().getrightJoystick().getX() < -0.2) m_drivetrain.run(-0.2, 4);
+            else m_drivetrain.run(0, 0);
+        }
+        else if(Math.abs(angle) < 1) m_drivetrain.run(speed, speed);
         else {
             
-            double lefty =(speed + (speed*angle/(50 - 20*speed)));
-            double righty = (speed - (speed*angle/(50 - 20*speed)));
-            if(Math.abs(lefty) > Math.abs(righty) && Math.abs(lefty) > 1) m_drivetrain.run(lefty/ Math.abs(lefty), righty/ Math.abs(lefty));
-            else if(Math.abs(righty) > 1) m_drivetrain.run(lefty/ Math.abs(righty), righty/ Math.abs(righty));
-            else m_drivetrain.run(lefty, righty); 
-            SmartDashboard.putString("LeftCorrection", " " + lefty);
-            SmartDashboard.putString("RightCorrection", " " + righty);
+             double lefty =(speed + (speed*angle/(70)));
+             double righty = (speed - (speed*angle/(70)));
+             if(Math.abs(lefty) > Math.abs(righty) && Math.abs(lefty) > 1) m_drivetrain.run(lefty/ Math.abs(lefty), righty/ Math.abs(lefty));
+             else if(Math.abs(righty) > 1) m_drivetrain.run(lefty/ Math.abs(righty), righty/ Math.abs(righty));
+             else m_drivetrain.run(lefty, righty); 
         
-        }
+
+             double lefty =(speed + (speed*angle/(70)));
+             double righty = (speed - (speed*angle/(70)));
+             if(Math.abs(lefty) > Math.abs(righty) m_drivetrain.run(speed*lefty/ Math.abs(lefty), speed*righty/ Math.abs(lefty));
+             else m_drivetrain.run(speed*lefty/ Math.abs(righty), speed*righty/ Math.abs(righty));
+         }*/
 
         
     }

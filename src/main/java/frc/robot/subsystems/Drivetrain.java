@@ -84,6 +84,8 @@ rightBackMotor = new WPI_TalonFX(3);
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        SmartDashboard.putNumber("Left Enc", leftFrontMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("Right Enc", rightFrontMotor.getSelectedSensorPosition());
 
     }
 
