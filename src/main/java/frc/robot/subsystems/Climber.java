@@ -95,11 +95,11 @@ rightPivotMotor = new WPI_TalonFX(17);
  
  
 
-leftTeleMotor = new WPI_TalonSRX(4);
+leftTeleMotor = new WPI_TalonSRX(1);
  
  
 
-rightTeleMotor = new WPI_TalonSRX(3);
+rightTeleMotor = new WPI_TalonSRX(6);
  
  
 
@@ -168,7 +168,7 @@ rightTeleMotor = new WPI_TalonSRX(3);
 
 		brakemodeOn();
 
-		leftTeleMotor.configForwardSoftLimitThreshold(SAFETY_TICKS_TOP);
+		/*leftTeleMotor.configForwardSoftLimitThreshold(SAFETY_TICKS_TOP);
 		rightTeleMotor.configForwardSoftLimitThreshold(SAFETY_TICKS_TOP);
 		leftTeleMotor.configReverseSoftLimitThreshold(SAFETY_TICKS_BOTTOM);
 		rightTeleMotor.configReverseSoftLimitThreshold(SAFETY_TICKS_BOTTOM);
@@ -176,12 +176,12 @@ rightTeleMotor = new WPI_TalonSRX(3);
 		leftTeleMotor.configForwardSoftLimitEnable(true);
 		rightTeleMotor.configForwardSoftLimitEnable(true);
 		leftTeleMotor.configReverseSoftLimitEnable(true);
-		rightTeleMotor.configReverseSoftLimitEnable(true);
+		rightTeleMotor.configReverseSoftLimitEnable(true);*/
 
 		m_distance = dist * TICKSPERFOOT;
 
-		leftTeleMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, PID_INDEX, kTimeoutMs);
-		rightTeleMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, PID_INDEX, kTimeoutMs);
+		/*leftTeleMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, PID_INDEX, kTimeoutMs);
+		rightTeleMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, PID_INDEX, kTimeoutMs);*/
 
 		leftTeleMotor.configNeutralDeadband(0.001, kTimeoutMs);
 		rightTeleMotor.configNeutralDeadband(0.001, kTimeoutMs);
@@ -241,13 +241,13 @@ rightTeleMotor = new WPI_TalonSRX(3);
 		return rightPivotMotor.getSelectedSensorPosition();
 	}
 
-	public double getLeftTeleEncoder() {
+	/*public double getLeftTeleEncoder() {
 		return leftTeleMotor.getSelectedSensorPosition();
 	}
 
 	public double getRightTeleEncoder() {
 		return rightTeleMotor.getSelectedSensorPosition();
-	}
+	}*/
 
 	public void resetPivotEncoders() {
 		rightPivotMotor.setSelectedSensorPosition(0);
@@ -264,10 +264,10 @@ rightTeleMotor = new WPI_TalonSRX(3);
 				|| Math.abs(m_angle) - Math.abs(getRightPivotEncoder()) < THRESHOLD);
 	}
 
-	public boolean isTeleAtDestination() {
+	/*public boolean isTeleAtDestination() {
 		return (Math.abs(getLeftTeleEncoder() - m_distance) < THRESHOLD
 				|| Math.abs(getLeftTeleEncoder() - m_distance) < THRESHOLD);
-	}
+	}*/
 
 	public void runTele(double l, double r) {
 		leftTeleMotor.set(l);
@@ -290,19 +290,37 @@ rightTeleMotor = new WPI_TalonSRX(3);
 	}
 
 	public boolean pastLimitSwitch() {
-		return leftTeleMotor.getSensorCollection().isRevLimitSwitchClosed()
-				&& rightTeleMotor.getSensorCollection().isRevLimitSwitchClosed();
+		return pastLimitSwitchLeftTele()
+				&& pastLimitSwitchRightTele();
 	}
 
 	public boolean pastLimitSwitchLeftTele() {
-		return leftTeleMotor.getSensorCollection().isRevLimitSwitchClosed();
+		return leftTeleMotor.getSensorCollection().isRevLimitSwitchClosed()
+				|| leftTeleMotor.getSensorCollection().isFwdLimitSwitchClosed();
 	}
 
 	public boolean pastLimitSwitchRightTele() {
+		return rightTeleMotor.getSensorCollection().isRevLimitSwitchClosed()
+				|| rightTeleMotor.getSensorCollection().isFwdLimitSwitchClosed();
+	}
+
+	public boolean pastFwdLimitSwitchRightTele() {
+		return rightTeleMotor.getSensorCollection().isFwdLimitSwitchClosed();
+	}
+	
+	public boolean pastRevLimitSwitchRightTele() {
 		return rightTeleMotor.getSensorCollection().isRevLimitSwitchClosed();
 	}
 
-	public void resetPosTop() {
+	public boolean pastFwdLimitSwitchLeftTele() {
+		return leftTeleMotor.getSensorCollection().isFwdLimitSwitchClosed();
+	}
+	
+	public boolean pastRevLimitSwitchLeftTele() {
+		return leftTeleMotor.getSensorCollection().isRevLimitSwitchClosed();
+	}
+
+	/*public void resetPosTop() {
 		leftTeleMotor.setSelectedSensorPosition(TICKS_TOP, 0, kTimeoutMs);
 		rightTeleMotor.setSelectedSensorPosition(TICKS_TOP, 0, kTimeoutMs);
 	}
@@ -315,7 +333,7 @@ rightTeleMotor = new WPI_TalonSRX(3);
 	public void overrideSoftLimit(boolean change) {
 		leftTeleMotor.overrideSoftLimitsEnable(change);
 		rightTeleMotor.overrideSoftLimitsEnable(change);
-	}
+	}*/
 
 	public void brakemodeOn() {
 		leftTeleMotor.setNeutralMode(NeutralMode.Brake);

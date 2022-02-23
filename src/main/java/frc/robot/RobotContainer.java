@@ -178,11 +178,11 @@ resetTeleBtn.whenPressed(new ResetTelescope( m_climber ) ,true);
     SmartDashboard.putData("resetTeleBtn",new ResetTelescope( m_climber ) );
 
 final JoystickButton retractTeleBtn = new JoystickButton(leftJoystick, 5);        
-retractTeleBtn.whenPressed(new TelescopeClimber(0.0, m_climber) ,true);
+retractTeleBtn.whenPressed(new TelescopeClimber(-0.6, m_climber) ,true);
     SmartDashboard.putData("retractTeleBtn",new TelescopeClimber(0.0, m_climber) );
 
 final JoystickButton extendTeleBtn = new JoystickButton(leftJoystick, 4);        
-extendTeleBtn.whenPressed(new TelescopeClimber(3, m_climber) ,true);
+extendTeleBtn.whenPressed(new TelescopeClimber(0.3, m_climber) ,true);
     SmartDashboard.putData("extendTeleBtn",new TelescopeClimber(3, m_climber) );
 
 final JoystickButton toggleLockBtn = new JoystickButton(leftJoystick, 3);        

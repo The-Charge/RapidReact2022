@@ -54,7 +54,7 @@ public class ResetTelescope extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_climber.overrideSoftLimit(false);
+        //m_climber.overrideSoftLimit(false);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -73,8 +73,8 @@ public class ResetTelescope extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         m_climber.stopTele();
-        m_climber.overrideSoftLimit(true);
-        m_climber.resetPosBottom();
+        //m_climber.overrideSoftLimit(true);
+        //m_climber.resetPosBottom();
     }
 
     // Returns true when the command should end.
