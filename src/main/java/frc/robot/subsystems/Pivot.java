@@ -156,6 +156,11 @@ rightPivotMotor = new WPI_TalonFX(6);
 		return (Math.abs(m_angle) - Math.abs(getLeftPivotEncoder()) < THRESHOLD || Math.abs(m_angle) - Math.abs(getRightPivotEncoder()) < THRESHOLD);
 	}
 
+	public void runPivot(double l, double r) {
+		leftPivotMotor.set(l);
+		rightPivotMotor.set(r);
+	}
+
     public void stopPivot(){
 		rightPivotMotor.set(0);
 		leftPivotMotor.set(0);

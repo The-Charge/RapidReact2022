@@ -187,44 +187,73 @@ rightTeleMotor = new WPI_TalonSRX(8);
 		return (Math.abs(getLeftTeleEncoder() - m_distance) < THRESHOLD || Math.abs(getLeftTeleEncoder() - m_distance) < THRESHOLD);
 	}
 
-	public void run(double l, double r){
+	public void runTele(double l, double r) {
 		leftTeleMotor.set(l);
 		rightTeleMotor.set(r);
 	}
-
-	
 
 	public void stopTele(){
 		rightTeleMotor.set(0);
 		leftTeleMotor.set(0);
 	}
 
-	public boolean pastLimitSwitch(){
-		return leftTeleMotor.getSensorCollection().isRevLimitSwitchClosed() && rightTeleMotor.getSensorCollection().isRevLimitSwitchClosed();
+	public boolean pastLimitSwitch() {
+		return pastLimitSwitchLeftTele()
+				&& pastLimitSwitchRightTele();
 	}
 
-	public boolean pastLimitSwitchLeftTele(){
-		return leftTeleMotor.getSensorCollection().isRevLimitSwitchClosed();
+	public boolean pastLimitSwitchLeftTele() {
+		return leftTeleMotor.getSensorCollection().isRevLimitSwitchClosed()
+				|| leftTeleMotor.getSensorCollection().isFwdLimitSwitchClosed();
 	}
 
-	public boolean pastLimitSwitchRightTele(){
+	public boolean pastLimitSwitchRightTele() {
+		return rightTeleMotor.getSensorCollection().isRevLimitSwitchClosed()
+				|| rightTeleMotor.getSensorCollection().isFwdLimitSwitchClosed();
+	}
+
+	public boolean pastFwdLimitSwitchRightTele() {
+		return rightTeleMotor.getSensorCollection().isFwdLimitSwitchClosed();
+	}
+	
+	public boolean pastRevLimitSwitchRightTele() {
 		return rightTeleMotor.getSensorCollection().isRevLimitSwitchClosed();
 	}
 
-	public void resetPosTop() {
-    	leftTeleMotor.setSelectedSensorPosition(TICKS_TOP, 0, kTimeoutMs);
-		rightTeleMotor.setSelectedSensorPosition(TICKS_TOP, 0, kTimeoutMs);
-    }
-
-	public void resetPosBottom() {
-    	leftTeleMotor.setSelectedSensorPosition(TICKS_BOTTOM, 0, kTimeoutMs);
-		rightTeleMotor.setSelectedSensorPosition(TICKS_BOTTOM, 0, kTimeoutMs);
-    }
-
-	public void overrideSoftLimit(boolean change) {
-		leftTeleMotor.overrideSoftLimitsEnable(change);
-		rightTeleMotor.overrideSoftLimitsEnable(change);
+	public boolean pastFwdLimitSwitchLeftTele() {
+		return leftTeleMotor.getSensorCollection().isFwdLimitSwitchClosed();
 	}
+	
+	public boolean pastRevLimitSwitchLeftTele() {
+		return leftTeleMotor.getSensorCollection().isRevLimitSwitchClosed();
+	}
+
+	// public boolean pastLimitSwitch(){
+	// 	return leftTeleMotor.getSensorCollection().isRevLimitSwitchClosed() && rightTeleMotor.getSensorCollection().isRevLimitSwitchClosed();
+	// }
+
+	// public boolean pastLimitSwitchLeftTele(){
+	// 	return leftTeleMotor.getSensorCollection().isRevLimitSwitchClosed();
+	// }
+
+	// public boolean pastLimitSwitchRightTele(){
+	// 	return rightTeleMotor.getSensorCollection().isRevLimitSwitchClosed();
+	// }
+
+	// public void resetPosTop() {
+    // 	leftTeleMotor.setSelectedSensorPosition(TICKS_TOP, 0, kTimeoutMs);
+	// 	rightTeleMotor.setSelectedSensorPosition(TICKS_TOP, 0, kTimeoutMs);
+    // }
+
+	// public void resetPosBottom() {
+    // 	leftTeleMotor.setSelectedSensorPosition(TICKS_BOTTOM, 0, kTimeoutMs);
+	// 	rightTeleMotor.setSelectedSensorPosition(TICKS_BOTTOM, 0, kTimeoutMs);
+    // }
+
+	// public void overrideSoftLimit(boolean change) {
+	// 	leftTeleMotor.overrideSoftLimitsEnable(change);
+	// 	rightTeleMotor.overrideSoftLimitsEnable(change);
+	// }
 
 	public void brakemodeOn() {
 		leftTeleMotor.setNeutralMode(NeutralMode.Brake);
