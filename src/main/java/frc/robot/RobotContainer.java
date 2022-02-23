@@ -153,22 +153,6 @@ final JoystickButton quarterSpeedBtn = new JoystickButton(rightJoystick, 1);
 quarterSpeedBtn.toggleWhenPressed(new QuarterSpeed( m_drivetrain ) ,true);
     SmartDashboard.putData("quarterSpeedBtn",new QuarterSpeed( m_drivetrain ) );
 
-final JoystickButton teleRetractBtn = new JoystickButton(leftJoystick, 12);        
-teleRetractBtn.whileHeld(new MannualTele(-.3, m_climber) ,true);
-    SmartDashboard.putData("teleRetractBtn",new MannualTele(-.3, m_climber) );
-
-final JoystickButton teleExtendBtn = new JoystickButton(leftJoystick, 11);        
-teleExtendBtn.whileHeld(new MannualTele(.3, m_climber) ,true);
-    SmartDashboard.putData("teleExtendBtn",new MannualTele(.3, m_climber) );
-
-final JoystickButton pivotBackwardBtn = new JoystickButton(leftJoystick, 10);        
-pivotBackwardBtn.whileHeld(new MannualPivot(-.3, m_climber) ,true);
-    SmartDashboard.putData("pivotBackwardBtn",new MannualPivot(-.3, m_climber) );
-
-final JoystickButton pivotForwardBtn = new JoystickButton(leftJoystick, 9);        
-pivotForwardBtn.whileHeld(new MannualPivot(.3, m_climber) ,true);
-    SmartDashboard.putData("pivotForwardBtn",new MannualPivot(.3, m_climber) );
-
 final JoystickButton pivotBtn = new JoystickButton(leftJoystick, 7);        
 pivotBtn.whenPressed(new PivotClimber(90, m_climber) ,true);
     SmartDashboard.putData("pivotBtn",new PivotClimber(90, m_climber) );
@@ -178,12 +162,12 @@ resetTeleBtn.whenPressed(new ResetTelescope( m_climber ) ,true);
     SmartDashboard.putData("resetTeleBtn",new ResetTelescope( m_climber ) );
 
 final JoystickButton retractTeleBtn = new JoystickButton(leftJoystick, 5);        
-retractTeleBtn.whenPressed(new TelescopeClimber(-0.6, m_climber) ,true);
-    SmartDashboard.putData("retractTeleBtn",new TelescopeClimber(0.0, m_climber) );
+retractTeleBtn.whenPressed(new TelescopeClimber(-0.3, m_climber) ,true);
+    SmartDashboard.putData("retractTeleBtn",new TelescopeClimber(-0.3, m_climber) );
 
 final JoystickButton extendTeleBtn = new JoystickButton(leftJoystick, 4);        
 extendTeleBtn.whenPressed(new TelescopeClimber(0.3, m_climber) ,true);
-    SmartDashboard.putData("extendTeleBtn",new TelescopeClimber(3, m_climber) );
+    SmartDashboard.putData("extendTeleBtn",new TelescopeClimber(0.3, m_climber) );
 
 final JoystickButton toggleLockBtn = new JoystickButton(leftJoystick, 3);        
 toggleLockBtn.whileHeld(new ToggleLockStraight( m_drivetrain ) ,true);

@@ -95,11 +95,11 @@ rightPivotMotor = new WPI_TalonFX(17);
  
  
 
-leftTeleMotor = new WPI_TalonSRX(1);
+leftTeleMotor = new WPI_TalonSRX(18);
  
  
 
-rightTeleMotor = new WPI_TalonSRX(6);
+rightTeleMotor = new WPI_TalonSRX(19);
  
  
 
