@@ -498,6 +498,41 @@ Children:
           value: whenPressed
       Base: Joystick Button
       Name: pivotBtn
+    - Children: []
+      Properties:
+        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
+          name: Interruptible, validators: null, value: true}
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: leftJoystick}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value: []
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id005
+          default: '1'
+          name: Button
+          validators: null
+          value: '8'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id006
+          value: ColorAlign
+        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
+          name: Timeout, validators: null, value: 0.0}
+        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Add Timeout, validators: null, value: false}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id007
+          default: whenPressed
+          name: When to Run
+          validators: null
+          value: whenPressed
+      Base: Joystick Button
+      Name: colorBtn
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: &id009 ['0', '1', '2', '3', '4', '5']
