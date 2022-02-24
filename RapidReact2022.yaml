@@ -510,7 +510,7 @@ Children:
           validators: null
           value: []
         Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id005
+          choices: *id006
           default: '1'
           name: Button
           validators: null
@@ -519,20 +519,20 @@ Children:
           default: None
           name: Command
           type: Command
-          validators: *id006
+          validators: *id007
           value: ColorAlign
         Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
           name: Timeout, validators: null, value: 0.0}
         Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
           name: Add Timeout, validators: null, value: false}
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id007
+          choices: *id008
           default: whenPressed
           name: When to Run
           validators: null
-          value: whenPressed
+          value: toggleWhenPressed
       Base: Joystick Button
-      Name: colorBtn
+      Name: alignBtn
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: &id009 ['0', '1', '2', '3', '4', '5']
@@ -1214,14 +1214,36 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: Pivot}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id011 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id011
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: ManualPivot
+  - Children: []
+    Properties:
+      Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Autonomous Selection, validators: null, value: false}
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value: []
+      Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Run When Disabled, validators: null, value: false}
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Drivetrain}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: []
+        name: Parameter presets
+        validators: null
+        value: []
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command
+    Name: ColorAlign
   Properties: {}
   Base: Commands
   Name: Commands
