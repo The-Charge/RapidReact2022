@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -65,11 +66,11 @@ leftBackMotor = new WPI_TalonFX(15);
  
  
 
-rightFrontMotor = new WPI_TalonFX(1);
+rightFrontMotor = new WPI_TalonFX(2);
  
  
 
-rightMidMotor = new WPI_TalonFX(2);
+rightMidMotor = new WPI_TalonFX(1);
  
  
 
