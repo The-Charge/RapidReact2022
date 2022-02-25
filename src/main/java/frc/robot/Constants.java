@@ -11,6 +11,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -20,13 +22,56 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public class Constants {
-   /**
-    * public static final class DriveConstants {
-    *   public static final int kLeftMotor1Port = 0;
-    *   public static final int kLeftMotor2Port = 1;
-    *   public static final int kRightMotor1Port = 2;
-    *   public static final int kRightMotor2Port = 3; 
-    * }
-    */ 
+   public static final class DriveConstants{
+
+   // For Motion Profile (Ramsete)  
+    public static final int kEncoderCPR = 13800; // 15525
+    public static final double kWheelDiameterMeters = 0.152;
+   // Assumes the encoders are directly mounted on the wheel shafts
+    public static final double kEncoderDistancePerPulse = (kWheelDiameterMeters * Math.PI) / (double) kEncoderCPR;
+   // TODO test/tune these values
+    public static final double ksVolts = 0.75588; // .501
+    public static final double kvVoltSecondsPerMeter = 1.5582; //1.6
+    public static final double kaVoltSecondsSquaredPerMeter = 0.176;
+    public static final double kTrackwidthMeters = 0.749676776;
+    public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
+    public static final double kPDriveVel = 4;
+    
+   // For Motion Magic 
+    public static final double kNeutralDeadband = 0.001;
+    public static final double MM_VEL = 4000;
+    public static final double MM_ACC = 2000;
+    public static final double DISTANCE_kP = 0.1;
+    public static final double DISTANCE_kI = 0.0;
+    public static final double DISTANCE_kD = 0.0;
+    public static final double DISTANCE_kF = 0.0;
+    public static final double DISTANCE_kIzone = 100;
+    public static final double DISTANCE_PEAK = 0.50;
+    public static final double TURN_kP = 0.2;
+    public static final double TURN_kI = 0.0;
+    public static final double TURN_kD = 0.0;
+    public static final double TURN_kF = 0.0;
+    public static final double TURN_kIzone = 200;
+    public static final double TURN_PEAK = 1.00; 
+    public static final double TICKSPERFEET = 9938;
+    public final static int PID_PRIMARY = 0;
+    public final static int PID_TURN = 1;
+    public final static int kSlot_Distance = 0;
+    public final static int kSlot_Turning = 1; 
+   }
+
+   public static final class AutoConstants {
+      public static final double initElevation = .8;
+      public static final double initShootSpeed = 0.65;
+      public static final double kMaxSpeedMetersPerSecond = 1.5; // 1.0
+      public static final double kMaxAccelerationMetersPerSecondSquared = 1.0; // .5
+
+      // Reasonable baseline values for a RAMSETE follower in units of meters and
+      // seconds
+      public static final double kRamseteB = 2;
+      public static final double kRamseteZeta = 0.7;
+  
+  }
+
 }
 
