@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
@@ -173,6 +174,11 @@ rightPivotMotor = new WPI_TalonFX(6);
         else
             return false;
     }
+
+	public void setControlMode(ControlMode mode){
+		leftPivotMotor.set(mode, 0);
+		rightPivotMotor.set(mode, 0);
+	}
 
 }
 

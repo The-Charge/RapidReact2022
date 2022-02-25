@@ -184,8 +184,6 @@ rightBackMotor = new WPI_TalonFX(4);
 		rightFrontMotor.configNeutralDeadband(0.05);
 
 		resetEncoders();
-
-		initializeMotors();
 		setBrakeMode();
 
     }

@@ -262,13 +262,13 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '1'
+          value: '5'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
           type: Command
           validators: &id007 [TypeDropdownSelected]
-          value: HalfSpeed
+          value: ToggleLockStraight
         Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
           name: Timeout, validators: null, value: 0.0}
         Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
@@ -281,223 +281,7 @@ Children:
           validators: null
           value: toggleWhenPressed
       Base: Joystick Button
-      Name: halfSpeedBtn
-    - Children: []
-      Properties:
-        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
-          name: Interruptible, validators: null, value: true}
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: leftJoystick}
-        Parameters: !!robotbuilder.data.properties.ParametersProperty
-          default: []
-          name: Parameters
-          validators: null
-          value: []
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id006
-          default: '1'
-          name: Button
-          validators: null
-          value: '2'
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id007
-          value: InvertDrive
-        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
-          name: Timeout, validators: null, value: 0.0}
-        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Add Timeout, validators: null, value: false}
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
-          default: whenPressed
-          name: When to Run
-          validators: null
-          value: toggleWhenPressed
-      Base: Joystick Button
-      Name: invertBtn
-    - Children: []
-      Properties:
-        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
-          name: Interruptible, validators: null, value: true}
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: leftJoystick}
-        Parameters: !!robotbuilder.data.properties.ParametersProperty
-          default: []
-          name: Parameters
-          validators: null
-          value: []
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id006
-          default: '1'
-          name: Button
-          validators: null
-          value: '3'
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id007
-          value: ToggleLockStraight
-        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
-          name: Timeout, validators: null, value: 0.0}
-        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Add Timeout, validators: null, value: false}
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
-          default: whenPressed
-          name: When to Run
-          validators: null
-          value: whileHeld
-      Base: Joystick Button
       Name: toggleLockBtn
-    - Children: []
-      Properties:
-        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
-          name: Interruptible, validators: null, value: true}
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: leftJoystick}
-        Parameters: !!robotbuilder.data.properties.ParametersProperty
-          default: []
-          name: Parameters
-          validators: null
-          value:
-          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: speed,
-            type: double, value: '0.3'}
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id006
-          default: '1'
-          name: Button
-          validators: null
-          value: '4'
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id007
-          value: TelescopeClimber
-        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
-          name: Timeout, validators: null, value: 0.0}
-        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Add Timeout, validators: null, value: false}
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
-          default: whenPressed
-          name: When to Run
-          validators: null
-          value: whenPressed
-      Base: Joystick Button
-      Name: extendTeleBtn
-    - Children: []
-      Properties:
-        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
-          name: Interruptible, validators: null, value: true}
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: leftJoystick}
-        Parameters: !!robotbuilder.data.properties.ParametersProperty
-          default: []
-          name: Parameters
-          validators: null
-          value:
-          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: speed,
-            type: double, value: '-0.3'}
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id006
-          default: '1'
-          name: Button
-          validators: null
-          value: '5'
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id007
-          value: TelescopeClimber
-        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
-          name: Timeout, validators: null, value: 0.0}
-        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Add Timeout, validators: null, value: false}
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
-          default: whenPressed
-          name: When to Run
-          validators: null
-          value: whenPressed
-      Base: Joystick Button
-      Name: retractTeleBtn
-    - Children: []
-      Properties:
-        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
-          name: Interruptible, validators: null, value: true}
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: leftJoystick}
-        Parameters: !!robotbuilder.data.properties.ParametersProperty
-          default: []
-          name: Parameters
-          validators: null
-          value: []
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id006
-          default: '1'
-          name: Button
-          validators: null
-          value: '6'
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id007
-          value: ResetTelescope
-        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
-          name: Timeout, validators: null, value: 0.0}
-        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Add Timeout, validators: null, value: false}
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
-          default: whenPressed
-          name: When to Run
-          validators: null
-          value: whenPressed
-      Base: Joystick Button
-      Name: resetTeleBtn
-    - Children: []
-      Properties:
-        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
-          name: Interruptible, validators: null, value: true}
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: leftJoystick}
-        Parameters: !!robotbuilder.data.properties.ParametersProperty
-          default: []
-          name: Parameters
-          validators: null
-          value:
-          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: angle,
-            type: double, value: '90'}
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id006
-          default: '1'
-          name: Button
-          validators: null
-          value: '7'
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id007
-          value: PivotClimber
-        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
-          name: Timeout, validators: null, value: 0.0}
-        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Add Timeout, validators: null, value: false}
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
-          default: whenPressed
-          name: When to Run
-          validators: null
-          value: whenPressed
-      Base: Joystick Button
-      Name: pivotBtn
     - Children: []
       Properties:
         Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
@@ -530,7 +314,7 @@ Children:
           default: whenPressed
           name: When to Run
           validators: null
-          value: toggleWhenPressed
+          value: whileHeld
       Base: Joystick Button
       Name: alignBtn
     Properties:
@@ -565,7 +349,7 @@ Children:
           name: Command
           type: Command
           validators: *id007
-          value: QuarterSpeed
+          value: InvertDrive
         Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
           name: Timeout, validators: null, value: 0.0}
         Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
@@ -575,44 +359,9 @@ Children:
           default: whenPressed
           name: When to Run
           validators: null
-          value: toggleWhenPressed
+          value: whileHeld
       Base: Joystick Button
-      Name: quarterSpeedBtn
-    - Children: []
-      Properties:
-        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
-          name: Interruptible, validators: null, value: true}
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: rightJoystick}
-        Parameters: !!robotbuilder.data.properties.ParametersProperty
-          default: []
-          name: Parameters
-          validators: null
-          value: []
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id006
-          default: '1'
-          name: Button
-          validators: null
-          value: '2'
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id007
-          value: ShiftHigh
-        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
-          name: Timeout, validators: null, value: 0.0}
-        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Add Timeout, validators: null, value: false}
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
-          default: whenPressed
-          name: When to Run
-          validators: null
-          value: whenPressed
-      Base: Joystick Button
-      Name: shiftHighBtn
+      Name: invertDriveBtn
     - Children: []
       Properties:
         Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
@@ -647,118 +396,7 @@ Children:
           validators: null
           value: whenPressed
       Base: Joystick Button
-      Name: shiftLowBtn
-    - Children: []
-      Properties:
-        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
-          name: Interruptible, validators: null, value: true}
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: rightJoystick}
-        Parameters: !!robotbuilder.data.properties.ParametersProperty
-          default: []
-          name: Parameters
-          validators: null
-          value:
-          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: distance,
-            type: double, value: '0'}
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id006
-          default: '1'
-          name: Button
-          validators: null
-          value: '4'
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id007
-          value: DriveXFeet
-        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
-          name: Timeout, validators: null, value: 0.0}
-        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Add Timeout, validators: null, value: false}
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
-          default: whenPressed
-          name: When to Run
-          validators: null
-          value: whenPressed
-      Base: Joystick Button
-      Name: driveXFeetBtn
-    - Children: []
-      Properties:
-        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
-          name: Interruptible, validators: null, value: true}
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: rightJoystick}
-        Parameters: !!robotbuilder.data.properties.ParametersProperty
-          default: []
-          name: Parameters
-          validators: null
-          value:
-          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: speed,
-            type: double, value: '0.3'}
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id006
-          default: '1'
-          name: Button
-          validators: null
-          value: '5'
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id007
-          value: DeliverCargo
-        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
-          name: Timeout, validators: null, value: 0.0}
-        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Add Timeout, validators: null, value: false}
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
-          default: whenPressed
-          name: When to Run
-          validators: null
-          value: whileHeld
-      Base: Joystick Button
-      Name: deliverBtn
-    - Children: []
-      Properties:
-        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
-          name: Interruptible, validators: null, value: true}
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: rightJoystick}
-        Parameters: !!robotbuilder.data.properties.ParametersProperty
-          default: []
-          name: Parameters
-          validators: null
-          value:
-          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: speed,
-            type: double, value: '0.3'}
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id006
-          default: '1'
-          name: Button
-          validators: null
-          value: '6'
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id007
-          value: IntakeCargo
-        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
-          name: Timeout, validators: null, value: 0.0}
-        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Add Timeout, validators: null, value: false}
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
-          default: whenPressed
-          name: When to Run
-          validators: null
-          value: whenPressed
-      Base: Joystick Button
-      Name: intakeBtn
+      Name: lowGearBtn
     - Children: []
       Properties:
         Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
@@ -775,7 +413,122 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '7'
+          value: '4'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id007
+          value: QuarterSpeed
+        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
+          name: Timeout, validators: null, value: 0.0}
+        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Add Timeout, validators: null, value: false}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id008
+          default: whenPressed
+          name: When to Run
+          validators: null
+          value: toggleWhenPressed
+      Base: Joystick Button
+      Name: quarterSpeedBtn
+    - Children: []
+      Properties:
+        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
+          name: Interruptible, validators: null, value: true}
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: rightJoystick}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value: []
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id006
+          default: '1'
+          name: Button
+          validators: null
+          value: '5'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id007
+          value: ShiftLow
+        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
+          name: Timeout, validators: null, value: 0.0}
+        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Add Timeout, validators: null, value: false}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id008
+          default: whenPressed
+          name: When to Run
+          validators: null
+          value: whenPressed
+      Base: Joystick Button
+      Name: highGearBtn
+    - Children: []
+      Properties:
+        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
+          name: Interruptible, validators: null, value: true}
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: rightJoystick}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value: []
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id006
+          default: '1'
+          name: Button
+          validators: null
+          value: '6'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id007
+          value: HalfSpeed
+        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
+          name: Timeout, validators: null, value: 0.0}
+        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Add Timeout, validators: null, value: false}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id008
+          default: whenPressed
+          name: When to Run
+          validators: null
+          value: toggleWhenPressed
+      Base: Joystick Button
+      Name: halfSpeedBtn
+    Properties:
+      Number: !!robotbuilder.data.properties.ChoicesProperty
+        choices: *id009
+        default: 1
+        name: Number
+        validators: *id010
+        value: '1'
+    Base: Joystick
+    Name: rightJoystick
+  - Children:
+    - Children: []
+      Properties:
+        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
+          name: Interruptible, validators: null, value: true}
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: buttonBox}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value: []
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id006
+          default: '1'
+          name: Button
+          validators: null
+          value: '1'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
@@ -799,7 +552,44 @@ Children:
         Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
           name: Interruptible, validators: null, value: true}
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: rightJoystick}
+          name: Joystick, validators: null, value: buttonBox}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value:
+          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: speed,
+            type: double, value: '0'}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id006
+          default: '1'
+          name: Button
+          validators: null
+          value: '2'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id007
+          value: DeliverCargo
+        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
+          name: Timeout, validators: null, value: 0.0}
+        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Add Timeout, validators: null, value: false}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id008
+          default: whenPressed
+          name: When to Run
+          validators: null
+          value: whileHeld
+      Base: Joystick Button
+      Name: deliverBtn
+    - Children: []
+      Properties:
+        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
+          name: Interruptible, validators: null, value: true}
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: buttonBox}
         Parameters: !!robotbuilder.data.properties.ParametersProperty
           default: []
           name: Parameters
@@ -810,7 +600,7 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '8'
+          value: '3'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
@@ -829,15 +619,200 @@ Children:
           value: whenPressed
       Base: Joystick Button
       Name: lowerBtn
+    - Children: []
+      Properties:
+        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
+          name: Interruptible, validators: null, value: true}
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: buttonBox}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value:
+          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: speed,
+            type: double, value: '0'}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id006
+          default: '1'
+          name: Button
+          validators: null
+          value: '4'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id007
+          value: IntakeCargo
+        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
+          name: Timeout, validators: null, value: 0.0}
+        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Add Timeout, validators: null, value: false}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id008
+          default: whenPressed
+          name: When to Run
+          validators: null
+          value: whileHeld
+      Base: Joystick Button
+      Name: intakeBtn
+    - Children: []
+      Properties:
+        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
+          name: Interruptible, validators: null, value: true}
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: buttonBox}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value:
+          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: speed,
+            type: double, value: '0'}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id006
+          default: '1'
+          name: Button
+          validators: null
+          value: '6'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id007
+          value: TelescopeClimber
+        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
+          name: Timeout, validators: null, value: 0.0}
+        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Add Timeout, validators: null, value: false}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id008
+          default: whenPressed
+          name: When to Run
+          validators: null
+          value: whileHeld
+      Base: Joystick Button
+      Name: teleArmUpBtn
+    - Children: []
+      Properties:
+        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
+          name: Interruptible, validators: null, value: true}
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: buttonBox}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value:
+          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: speed,
+            type: double, value: '0'}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id006
+          default: '1'
+          name: Button
+          validators: null
+          value: '7'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id007
+          value: TelescopeClimber
+        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
+          name: Timeout, validators: null, value: 0.0}
+        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Add Timeout, validators: null, value: false}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id008
+          default: whenPressed
+          name: When to Run
+          validators: null
+          value: whileHeld
+      Base: Joystick Button
+      Name: teleArmDownBtn
+    - Children: []
+      Properties:
+        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
+          name: Interruptible, validators: null, value: true}
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: buttonBox}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value:
+          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: speed,
+            type: double, value: '0'}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id006
+          default: '1'
+          name: Button
+          validators: null
+          value: '8'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id007
+          value: ManualPivot
+        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
+          name: Timeout, validators: null, value: 0.0}
+        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Add Timeout, validators: null, value: false}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id008
+          default: whenPressed
+          name: When to Run
+          validators: null
+          value: whileHeld
+      Base: Joystick Button
+      Name: pivotArmForwardBtn
+    - Children: []
+      Properties:
+        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
+          name: Interruptible, validators: null, value: true}
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: buttonBox}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value:
+          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: speed,
+            type: double, value: '0'}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id006
+          default: '1'
+          name: Button
+          validators: null
+          value: '9'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id007
+          value: ManualPivot
+        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
+          name: Timeout, validators: null, value: 0.0}
+        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Add Timeout, validators: null, value: false}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id008
+          default: whenPressed
+          name: When to Run
+          validators: null
+          value: whileHeld
+      Base: Joystick Button
+      Name: pivotArmBackwardBtn
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: *id009
         default: 1
         name: Number
         validators: *id010
-        value: '1'
+        value: '2'
     Base: Joystick
-    Name: rightJoystick
+    Name: buttonBox
   Properties: {}
   Base: OI
   Name: Operator Interface
