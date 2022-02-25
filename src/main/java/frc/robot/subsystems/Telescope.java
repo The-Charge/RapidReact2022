@@ -12,9 +12,6 @@
 
 package frc.robot.subsystems;
 
-
-import frc.robot.commands.*;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -47,8 +44,6 @@ private WPI_TalonSRX rightTeleMotor;
 	private static double m_distance;
 	private static int THRESHOLD = 50;
 	private static final double TICKSPERFOOT = 14000;
-	private static final double TICKS_TOP = 42000;
-	private static final double TICKS_BOTTOM = 0;
 	private static final double SAFETY_TICKS_TOP = 39000;
 	private static final double SAFETY_TICKS_BOTTOM = 3000;
 

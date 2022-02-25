@@ -131,14 +131,6 @@ final JoystickButton teleArmDownBtn = new JoystickButton(buttonBox, 7);
 teleArmDownBtn.whileHeld(new TelescopeClimber(0, m_telescope) ,true);
     SmartDashboard.putData("teleArmDownBtn",new TelescopeClimber(0, m_telescope) );
 
-final JoystickButton driverAssistBtn = new JoystickButton(leftJoystick, 12);        
-driverAssistBtn.toggleWhenPressed(new DriverAssist( m_drivetrain ) ,true);
-    SmartDashboard.putData("driverAssistBtn",new DriverAssist( m_drivetrain ) );
-
-final JoystickButton toggleLockBtn = new JoystickButton(leftJoystick, 3);        
-toggleLockBtn.whileHeld(new ToggleLockStraight( m_drivetrain ) ,true);
-    SmartDashboard.putData("toggleLockBtn",new ToggleLockStraight( m_drivetrain ) );
-      
 final JoystickButton teleArmUpBtn = new JoystickButton(buttonBox, 6);        
 teleArmUpBtn.whileHeld(new TelescopeClimber(0, m_telescope) ,true);
     SmartDashboard.putData("teleArmUpBtn",new TelescopeClimber(0, m_telescope) );
@@ -178,6 +170,10 @@ lowGearBtn.whenPressed(new ShiftLow( m_shifters ) ,true);
 final JoystickButton invertDriveBtn = new JoystickButton(rightJoystick, 1);        
 invertDriveBtn.whileHeld(new InvertDrive( m_drivetrain ) ,true);
     SmartDashboard.putData("invertDriveBtn",new InvertDrive( m_drivetrain ) );
+
+final JoystickButton assistBtn = new JoystickButton(leftJoystick, 1);        
+assistBtn.whileHeld(new DriverAssist( m_drivetrain ) ,true);
+    SmartDashboard.putData("assistBtn",new DriverAssist( m_drivetrain ) );
 
 final JoystickButton alignBtn = new JoystickButton(leftJoystick, 8);        
 alignBtn.whileHeld(new ColorAlign( m_drivetrain ) ,true);
