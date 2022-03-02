@@ -12,20 +12,18 @@ public class Cooling implements Subsystem {
      */
     private Solenoid coolingSolenoid;
     private Drivetrain m_drivetrain;
-    private Pivot m_pivot;
 
-    public Cooling(Drivetrain drivetrain, Pivot pivot) {
+    public Cooling(Drivetrain drivetrain) {
         coolingSolenoid = new Solenoid(1, PneumaticsModuleType.REVPH, 3);
         m_drivetrain = drivetrain;
-        m_pivot = pivot;
         setDefaultCommand(new Cool(this));
         coolingSolenoid.set(false);
     }
     // Put code here to be run every loop
 
     public void cool() {
-        SmartDashboard.putBoolean("Shooter Temp", m_pivot.checkTemp());
-        if (m_drivetrain.checkTemp() || m_pivot.checkTemp())
+        SmartDashboard.putBoolean("Drivetrain Temp", m_drivetrain.checkTemp());
+        if (m_drivetrain.checkTemp())
             coolingSolenoid.set(true);
         else
             coolingSolenoid.set(false);

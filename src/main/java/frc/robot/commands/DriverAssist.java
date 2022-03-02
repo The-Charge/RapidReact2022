@@ -19,6 +19,7 @@ import java.util.Date;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.RobotContainer;
@@ -66,6 +67,7 @@ public class DriverAssist extends CommandBase {
         }
         lastSeen = new Date().getTime();
         
+        SmartDashboard.putBoolean("Driver Assist", true);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -89,10 +91,7 @@ public class DriverAssist extends CommandBase {
         //https://github.com/The-Charge/SulfuricAcid2021/blob/master/src/main/java/frc/robot/commands/RunTurretVision.java
     }
     private void chase(double distance, double angle){
-        double rightSpeed = -RobotContainer.getInstance().getrightJoystick().getY();
-        double leftSpeed = -RobotContainer.getInstance().getleftJoystick().getY();
-        double speed = (leftSpeed + rightSpeed)/2;
-        speed = 0.5;
+        double speed = 0.5;
         if(distance == -1 && new Date().getTime() - lastSeen > 500){
             if(RobotContainer.getInstance().getrightJoystick().getX() > 0.2) m_drivetrain.run(0.4, -0.2);
             else if(RobotContainer.getInstance().getrightJoystick().getX() < -0.2) m_drivetrain.run(-0.2, 4);
@@ -121,6 +120,7 @@ public class DriverAssist extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        SmartDashboard.putBoolean("Driver Assist", false);
     }
 
     // Returns true when the command should end.

@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import com.ctre.phoenix.motorcontrol.*;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -67,8 +68,8 @@ liftPiston = new DoubleSolenoid(1, PneumaticsModuleType.REVPH, 1, 2);
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        //SmartDashboard.putBoolean("IntakePiston1", liftPiston.isFwdSolenoidDisabled());
-        //SmartDashboard.putNumber("Arm Speed", isAtSpeed);
+        SmartDashboard.putBoolean("Arm Up", liftPiston.isFwdSolenoidDisabled());
+        SmartDashboard.putNumber("Intake Speed", armMotor.getSelectedSensorVelocity());
     }
     public void stop() {
         armMotor.set(0);

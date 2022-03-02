@@ -143,8 +143,8 @@ rightBackMotor = new WPI_TalonFX(4);
     public void periodic() {
         // This method will be called once per scheduler run
 		// Put code here to run every loop
-		SmartDashboard.putNumber("Drive left", leftFrontMotor.getSelectedSensorPosition(0));
-        SmartDashboard.putNumber("Drive right", rightFrontMotor.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("LeftEnc", leftFrontMotor.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("RightEnc", rightFrontMotor.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("POSE X", getPose().getX());
         SmartDashboard.putNumber("POSE Y", getPose().getY());
 

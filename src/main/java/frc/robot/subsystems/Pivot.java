@@ -79,6 +79,7 @@ rightPivotMotor = new WPI_TalonFX(6);
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+		SmartDashboard.putNumber("Pivot Enc", leftPivotMotor.getSelectedSensorPosition());
 
     }
 
@@ -164,17 +165,20 @@ rightPivotMotor = new WPI_TalonFX(6);
 		leftPivotMotor.set(0);
 	}
 
-    public boolean checkTemp() {
-        SmartDashboard.putNumber("Temp", leftPivotMotor.getTemperature());
-        if (leftPivotMotor.getTemperature() > MAX_TEMP || rightPivotMotor.getTemperature() > MAX_TEMP)
-            return true;
-        else
-            return false;
-    }
-
 	public void setControlMode(ControlMode mode){
 		leftPivotMotor.set(mode, 0);
 		rightPivotMotor.set(mode, 0);
+	}
+
+
+	public boolean pastLimitSwitchLeftTele() {
+		return leftPivotMotor.getSensorCollection().isRevLimitSwitchClosed() == 1
+				|| leftPivotMotor.getSensorCollection().isFwdLimitSwitchClosed() == 1;
+	}
+
+	public boolean pastLimitSwitchRightTele() {
+		return rightPivotMotor.getSensorCollection().isRevLimitSwitchClosed() == 1
+				|| rightPivotMotor.getSensorCollection().isFwdLimitSwitchClosed() == 1;
 	}
 
 }
