@@ -54,7 +54,7 @@ armMotor = new WPI_TalonSRX(7);
  
  
 
-liftPiston = new DoubleSolenoid(1, PneumaticsModuleType.REVPH, 1, 2);
+liftPiston = new DoubleSolenoid(1, PneumaticsModuleType.REVPH, 0, 1);
  addChild("liftPiston", liftPiston);
  
 

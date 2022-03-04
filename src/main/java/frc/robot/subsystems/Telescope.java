@@ -89,6 +89,10 @@ rightTeleMotor = new WPI_TalonSRX(8);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
+	public void initializeMotors(){
+		leftTeleMotor.setInverted(true);
+		rightTeleMotor.setInverted(false);
+	}
 
 	public void brakemodeOn() {
 		leftTeleMotor.setNeutralMode(NeutralMode.Brake);
