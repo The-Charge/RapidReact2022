@@ -92,6 +92,11 @@ rightPivotMotor = new WPI_TalonFX(6);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
+	public void initializeMotors(){
+		leftPivotMotor.setInverted(true);
+		rightPivotMotor.setInverted(true);
+	}
+
     public void initPivotMotionMagic(double angle){
 		m_angle = angle * TICKSPERDEGREE;
 
@@ -127,9 +132,6 @@ rightPivotMotor = new WPI_TalonFX(6);
 		leftPivotMotor.setSelectedSensorPosition(0, PID_INDEX, kTimeoutMs);
 
 		leftPivotMotor.configMotionSCurveStrength(PIVOT_SMOOTHING);
-
-		leftPivotMotor.setInverted(true);
-		rightPivotMotor.setInverted(true);
 		
 		rightPivotMotor.follow(leftPivotMotor);
 

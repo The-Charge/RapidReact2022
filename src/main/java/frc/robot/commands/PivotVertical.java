@@ -49,6 +49,7 @@ public class PivotVertical extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        m_pivot.initializeMotors();
         m_pivot.initPivotMotionMagic(0);
     }
 

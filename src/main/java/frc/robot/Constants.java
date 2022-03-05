@@ -35,11 +35,11 @@ public class Constants {
         // public static final boolean kLeftEncoderReversed = false;
         // public static final boolean kRightEncoderReversed = true;
 
-        public static final double kTrackwidthMeters = 0.749676776;
+        public static final double kTrackwidthMeters = .4826; 
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(
                 kTrackwidthMeters);
 
-        public static final int kEncoderCPR = 13800; // 15525
+        public static final int kEncoderCPR = 19000; // 15525
         public static final double kWheelDiameterMeters = 0.152;
         public static final double kEncoderDistancePerPulse =
                 // Assumes the encoders are directly mounted on the wheel shafts
@@ -47,12 +47,12 @@ public class Constants {
 
         public static final boolean kGyroReversed = true;
         // TODO test/tune these values
-        public static final double ksVolts = 0.75588; // .501
-        public static final double kvVoltSecondsPerMeter = 1.5582; //1.6
-        public static final double kaVoltSecondsSquaredPerMeter = 0.176;
+        public static final double ksVolts = .62031;//0.75588; // .501
+        public static final double kvVoltSecondsPerMeter = 2.4678; //1.5582; //1.6
+        public static final double kaVoltSecondsSquaredPerMeter = .39963;// 0.176;
 
         // Example value only - as above, this must be tuned for your drive!
-        public static final double kPDriveVel = 2.889; //4
+        public static final double kPDriveVel = 2.0; //4
     }
 
     public static final class OIConstants {

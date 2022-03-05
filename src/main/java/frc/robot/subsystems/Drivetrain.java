@@ -68,7 +68,7 @@ private WPI_TalonFX rightBackMotor;
     // m_rightMotors);
 
     // The gyro sensor
-    private final AHRS m_gyro = new AHRS(Port.kUSB);
+    private final AHRS m_gyro = new AHRS(Port.kMXP);
     private double gyroOffset = 0;
 
     // Odometry class for tracking robot pose
