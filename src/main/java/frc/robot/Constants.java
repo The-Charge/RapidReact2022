@@ -29,17 +29,16 @@ public class Constants {
         public static final int kRightMotor1Port = 7;
         public static final int kRightMotor2Port = 0;
         public static final int kRightMotor3Port = 8;
-        // public static final int[] kLeftEncoderPorts = new int[]{1,2,3};
-        // public static final int[] kRightEncoderPorts = new int[]{7,0,8};
-        // These are never called
-        // public static final boolean kLeftEncoderReversed = false;
-        // public static final boolean kRightEncoderReversed = true;
+        public static final boolean kLeftMotorReversed = false;
+        public static final boolean kRightMotorReversed = true;
+        public static final boolean kLeftEncoderReversed = false;
+        public static final boolean kRightEncoderReversed = true;
 
-        public static final double kTrackwidthMeters = 0.749676776;
+        public static final double kTrackwidthMeters = 0.483;
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(
                 kTrackwidthMeters);
 
-        public static final int kEncoderCPR = 13800; // 15525
+        public static final int kEncoderCPR = 19000; 
         public static final double kWheelDiameterMeters = 0.152;
         public static final double kEncoderDistancePerPulse =
                 // Assumes the encoders are directly mounted on the wheel shafts
@@ -47,12 +46,12 @@ public class Constants {
 
         public static final boolean kGyroReversed = true;
         // TODO test/tune these values
-        public static final double ksVolts = 0.75588; // .501
-        public static final double kvVoltSecondsPerMeter = 1.5582; //1.6
-        public static final double kaVoltSecondsSquaredPerMeter = 0.176;
+        public static final double ksVolts = 0.63537; // .501
+        public static final double kvVoltSecondsPerMeter = 2.4568; //1.6
+        public static final double kaVoltSecondsSquaredPerMeter = 0.39943;
 
         // Example value only - as above, this must be tuned for your drive!
-        public static final double kPDriveVel = 2.889; //4
+        public static final double kPDriveVel = 3.4457; //4
     }
 
     public static final class OIConstants {
