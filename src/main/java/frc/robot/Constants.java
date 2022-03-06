@@ -35,7 +35,7 @@ public class Constants {
         // public static final boolean kLeftEncoderReversed = false;
         // public static final boolean kRightEncoderReversed = true;
 
-        public static final double kTrackwidthMeters = .4826; 
+        public static final double kTrackwidthMeters = .609; //.4826; 
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(
                 kTrackwidthMeters);
 
@@ -60,8 +60,8 @@ public class Constants {
     }
 
     public static final class AutoConstants {
-        public static final double initElevation = .8;
-        public static final double initShootSpeed = 0.65;
+        public static final double intakeSpeed = 0.4;
+        public static final double deliverSpeed = 1.0;
         public static final double kMaxSpeedMetersPerSecond = 1.5; // 1.0
         public static final double kMaxAccelerationMetersPerSecondSquared = 1.0; // .5
 

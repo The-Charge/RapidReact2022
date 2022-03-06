@@ -57,10 +57,14 @@ public class AutonCommandFactory extends CommandBase {
     */
 
     public Command lowerAndIntake(double time, double pow, Arm arm) {
-        return new ParallelDeadlineGroup(
-            new WaitCommand(time), 
-            new LowerArm(arm), 
-            new IntakeCargo(pow, arm)).andThen(new LiftArm(arm));
+        return
+            new ParallelDeadlineGroup(new WaitCommand(time),
+            new SequentialCommandGroup(
+                new LowerArm(arm),
+                new IntakeCargo(pow, arm),
+                new LiftArm(arm)
+                )
+            );
     }
 
     public Command deliver(double time, double pow, Arm arm) {

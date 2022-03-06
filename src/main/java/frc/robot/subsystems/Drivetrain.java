@@ -193,6 +193,9 @@ rightBackMotor = new WPI_TalonFX(4);
 			l *= 0.25;
 			r *= 0.25;
 		}
+
+		l = Math.pow(l, 3);
+		r = Math.pow(r, 3);
 		leftFrontMotor.set(l);
 		rightFrontMotor.set(r);
 	}
