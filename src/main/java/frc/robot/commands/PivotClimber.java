@@ -51,8 +51,9 @@ public class PivotClimber extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_pivot.resetPivotEncoders();
-        m_pivot.initPivotMotionMagic(m_angle);
+        m_pivot.initializeMotors();;
+      //  m_pivot.resetPivotEncoders();
+        m_pivot.initMotionMagic(m_angle);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -65,13 +66,14 @@ public class PivotClimber extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        m_pivot.stopPivot();
+        //m_pivot.stopPivot();
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return m_pivot.isPivotAtDestination() || m_pivot.pastLimitSwitchLeftTele() || m_pivot.pastLimitSwitchRightTele();
+        return false;
+        //return m_pivot.isPivotAtDestination() || m_pivot.pastLimitSwitchLeftTele() || m_pivot.pastLimitSwitchRightTele();
     }
 
     @Override

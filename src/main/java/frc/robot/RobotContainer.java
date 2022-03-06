@@ -131,20 +131,29 @@ final JoystickButton liftBtn = new JoystickButton(buttonBox, 9);
 liftBtn.whenPressed(new LiftArm( m_arm ) ,true);
     SmartDashboard.putData("liftBtn",new LiftArm( m_arm ) );
 
+// final JoystickButton pivotArmForwardBtn = new JoystickButton(buttonBox, 6);        
+// pivotArmForwardBtn.whileHeld(new ManualPivot(0.01, m_pivot) ,true);
+//     SmartDashboard.putData("pivotArmForwardBtn",new ManualPivot(0, m_pivot) );
 final JoystickButton pivotArmForwardBtn = new JoystickButton(buttonBox, 6);        
-pivotArmForwardBtn.whileHeld(new ManualPivot(0.01, m_pivot) ,true);
+pivotArmForwardBtn.whileHeld(new PivotClimber(20, m_pivot) ,true);
     SmartDashboard.putData("pivotArmForwardBtn",new ManualPivot(0, m_pivot) );
 
 final JoystickButton teleArmUpBtn = new JoystickButton(buttonBox, 5);        
-teleArmUpBtn.whileHeld(new TelescopeClimber(0.35, m_telescope) ,true);
+teleArmUpBtn.whileHeld(new TelescopeClimber(0.8, m_telescope) ,true);
     SmartDashboard.putData("teleArmUpBtn",new TelescopeClimber(0, m_telescope) );
 
-final JoystickButton pivotArmBackwardBtn = new JoystickButton(buttonBox, 4);        
-pivotArmBackwardBtn.whileHeld(new ManualPivot(-0.01, m_pivot) ,true);
+// final JoystickButton pivotArmBackwardBtn = new JoystickButton(buttonBox, 4);        
+// pivotArmBackwardBtn.whileHeld(new ManualPivot(-0.01, m_pivot) ,true);
+//     SmartDashboard.putData("pivotArmBackwardBtn",new ManualPivot(0, m_pivot) );
+
+SmartDashboard.putData("resetPivots", new InstantCommand(() -> m_pivot.zeroSensors()));
+
+    final JoystickButton pivotArmBackwardBtn = new JoystickButton(buttonBox, 4);        
+pivotArmBackwardBtn.whileHeld(new PivotClimber(-20, m_pivot) ,true);
     SmartDashboard.putData("pivotArmBackwardBtn",new ManualPivot(0, m_pivot) );
 
 final JoystickButton teleArmDownBtn = new JoystickButton(buttonBox, 3);        
-teleArmDownBtn.whileHeld(new TelescopeClimber(-0.35, m_telescope) ,true);
+teleArmDownBtn.whileHeld(new TelescopeClimber(-0.8, m_telescope) ,true);
     SmartDashboard.putData("teleArmDownBtn",new TelescopeClimber(0, m_telescope) );
 
 final JoystickButton intakeBtn = new JoystickButton(buttonBox, 2);        
