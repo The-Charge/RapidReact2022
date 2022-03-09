@@ -139,7 +139,7 @@ liftBtn.whenPressed(new LiftArm( m_arm ) ,true);
 // pivotArmForwardBtn.whileHeld(new ManualPivot(0.01, m_pivot) ,true);
 //     SmartDashboard.putData("pivotArmForwardBtn",new ManualPivot(0, m_pivot) );
 final JoystickButton pivotArmForwardBtn = new JoystickButton(buttonBox, 6);        
-pivotArmForwardBtn.whileHeld(new PivotClimber(20, m_pivot) ,true);
+pivotArmForwardBtn.whileHeld(new PivotClimber(50, m_pivot) ,true);
     SmartDashboard.putData("pivotArmForwardBtn",new ManualPivot(0, m_pivot) );
 
 final JoystickButton teleArmUpBtn = new JoystickButton(buttonBox, 5);        
@@ -154,7 +154,7 @@ SmartDashboard.putData("resetPivots", new InstantCommand(() -> m_pivot.zeroSenso
 SmartDashboard.putData("resetDrivetrain", new InstantCommand(() -> m_drivetrain.resetEncoders()));
 
     final JoystickButton pivotArmBackwardBtn = new JoystickButton(buttonBox, 4);        
-pivotArmBackwardBtn.whileHeld(new PivotClimber(-20, m_pivot) ,true);
+pivotArmBackwardBtn.whileHeld(new PivotClimber(-10, m_pivot) ,true);
     SmartDashboard.putData("pivotArmBackwardBtn",new ManualPivot(0, m_pivot) );
 
 final JoystickButton teleArmDownBtn = new JoystickButton(buttonBox, 3);        

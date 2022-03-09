@@ -521,4 +521,9 @@ rightBackMotor = new WPI_TalonFX(4);
         else
             return false;
     }
+
+	public double getGyroZ(){
+		SmartDashboard.putNumber("ZAxis", m_gyro.getWorldLinearAccelZ());
+		return m_gyro.getWorldLinearAccelZ();
+	}
 }

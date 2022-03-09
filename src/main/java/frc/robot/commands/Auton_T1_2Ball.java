@@ -59,12 +59,12 @@ public class Auton_T1_2Ball extends SequentialCommandGroup {
     m_arm = arm;
     factory = new AutonCommandFactory();
     addCommands(
-        factory.deliver(0.5, AutoConstants.deliverSpeed, arm),
         new ParallelCommandGroup(
         getAutonomous1(),
         new SequentialCommandGroup(
+            factory.deliver(0.5, AutoConstants.deliverSpeed, arm),
             new WaitCommand(3),
-            factory.lowerAndIntake(8, AutoConstants.intakeSpeed, arm),
+            factory.lowerAndIntake(4.5, AutoConstants.intakeSpeed, arm),
             new LiftArm(arm),
             new WaitCommand(3.0),
             factory.deliver(2.0, AutoConstants.deliverSpeed, arm)
@@ -87,11 +87,11 @@ public class Auton_T1_2Ball extends SequentialCommandGroup {
     public Command getAutonomous1() {
         try {
 
-            String trajectoryJSON = "output/T1_Backup.wpilib.json";
+            String trajectoryJSON = "output/T1_BackupFast.wpilib.json";
             Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
             Trajectory exampleTrajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
 
-            trajectoryJSON = "output/T1_Grab2.wpilib.json";
+            trajectoryJSON = "output/T1_Grab2Fast.wpilib.json";
             Path trajectoryPath1 = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
             Trajectory exampleTrajectory1 = TrajectoryUtil.fromPathweaverJson(trajectoryPath1);
 
