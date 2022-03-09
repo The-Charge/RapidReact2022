@@ -43,6 +43,9 @@ public class Robot extends TimedRobot {
         // autonomous chooser on the dashboard.
         m_robotContainer = RobotContainer.getInstance();
         HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
+
+
+        RobotContainer.getInstance().m_pivot.initPivotMotionMagic();
     }
 
     /**
@@ -109,6 +112,7 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
+
     }
 
     /**

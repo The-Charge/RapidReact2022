@@ -48,7 +48,7 @@ private WPI_TalonFX rightPivotMotor;
     private static final double PIVOT_VEL = 2000;
 	private static final double PIVOT_ACC = 2000;
 
-	private static double m_angle;
+	private static double m_angle = 0;
 	private static int THRESHOLD = 50;
 	private static final double TICKSPERDEGREE = 90;
 
@@ -121,6 +121,8 @@ rightPivotMotor = new WPI_TalonFX(6);
         // This method will be called once per scheduler run
 		SmartDashboard.putNumber("Pivot Left Enc", leftPivotMotor.getSelectedSensorPosition());
 		SmartDashboard.putNumber("Pivot Right Enc", rightPivotMotor.getSelectedSensorPosition());
+
+		SmartDashboard.putNumber("Pivot ANGLE", m_angle);
 
     }
 
@@ -282,13 +284,13 @@ rightPivotMotor = new WPI_TalonFX(6);
 		rightPivotMotor.setNeutralMode(NeutralMode.Brake);
 	}
 
-    public void initPivotMotionMagic(double angle){
-		m_angle = angle * TICKSPERDEGREE;
+    public void initPivotMotionMagic(){
 
 		leftPivotMotor.configFactoryDefault();
 		rightPivotMotor.configFactoryDefault();
 
 		initializeMotors();
+		resetPivotEncoders();
 
 		leftPivotMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, PID_INDEX, kTimeoutMs);
 
@@ -348,9 +350,15 @@ rightPivotMotor = new WPI_TalonFX(6);
 
 		rightPivotMotor.configMotionSCurveStrength(PIVOT_SMOOTHING);
 
+		m_angle = 0;
+		
+	}
+
+	public void runMotionMagic(double angle){
+		m_angle = angle * TICKSPERDEGREE;
+
 		leftPivotMotor.set(TalonFXControlMode.MotionMagic, m_angle);
 		rightPivotMotor.set(TalonFXControlMode.MotionMagic, m_angle);
-		
 	}
 
     public double getLeftPivotEncoder(){
@@ -364,6 +372,10 @@ rightPivotMotor = new WPI_TalonFX(6);
     public void resetPivotEncoders(){
 		rightPivotMotor.setSelectedSensorPosition(0);
 		leftPivotMotor.setSelectedSensorPosition(0);
+	}
+
+	public double getAngle(){
+		return m_angle;
 	}
 
 

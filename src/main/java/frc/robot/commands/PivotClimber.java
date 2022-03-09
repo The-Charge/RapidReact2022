@@ -51,7 +51,8 @@ public class PivotClimber extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_pivot.initPivotMotionMagic(m_angle);
+        m_angle += 10;
+        m_pivot.runMotionMagic(m_angle);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
