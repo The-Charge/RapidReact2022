@@ -12,6 +12,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.AutoConstants;
 
@@ -44,7 +45,7 @@ private WPI_TalonSRX rightTeleMotor;
 
 	private static double m_distance;
 	private static int THRESHOLD = 50;
-	private static final double TICKSPERFOOT = 14000;
+	private static final double TICKSPERFOOT = 1400;
 	// private static final double SAFETY_TICKS_TOP = 39000;
 	// private static final double SAFETY_TICKS_BOTTOM = 3000;
 
@@ -53,8 +54,8 @@ private WPI_TalonSRX rightTeleMotor;
 	private static final int PID_SLOT = 0;
 
 	private static final double PIVOT_kP = 0.2;
-	private static final double PIVOT_kI = 0;
-	private static final double PIVOT_kD = 0.2;
+	private static final double PIVOT_kI = 0.0005;
+	private static final double PIVOT_kD = 0.0;
 	private static final double PIVOT_kF = 0;
 	private static final int TELE_SMOOTHING = 4;
 
@@ -81,7 +82,8 @@ rightTeleMotor = new WPI_TalonSRX(8);
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-
+		SmartDashboard.putNumber("Left Tele", getLeftTeleEncoder());
+		SmartDashboard.putNumber("Right Tele", getRightTeleEncoder());
     }
 
     @Override
@@ -96,6 +98,9 @@ rightTeleMotor = new WPI_TalonSRX(8);
 	public void initializeMotors(){
 		leftTeleMotor.setInverted(true);
 		rightTeleMotor.setInverted(false);
+
+		rightTeleMotor.setSensorPhase(false);
+		resetTeleEncoders();
 	}
 
 	public void brakemodeOn() {
@@ -211,13 +216,14 @@ rightTeleMotor = new WPI_TalonSRX(8);
 
 	}
 
+	public void runLeftMotionMagic(double dist){
 
-	public void runMotionMagic(double dist){
-		m_distance = dist * TICKSPERFOOT;
+		leftTeleMotor.set(ControlMode.MotionMagic, dist);
+	}
 
-		leftTeleMotor.set(ControlMode.MotionMagic, m_distance);
+	public void runRightMotionMagic(double dist){
 
-		rightTeleMotor.set(ControlMode.MotionMagic, m_distance);
+		rightTeleMotor.set(ControlMode.MotionMagic, dist);
 	}
 	
 
@@ -233,6 +239,14 @@ rightTeleMotor = new WPI_TalonSRX(8);
 	public void resetTeleEncoders(){
 		rightTeleMotor.setSelectedSensorPosition(0);
 		leftTeleMotor.setSelectedSensorPosition(0);
+	}
+
+	public void resetLeftEncoder(){
+		leftTeleMotor.setSelectedSensorPosition(0);
+	}
+
+	public void resetRightEncoder(){
+		rightTeleMotor.setSelectedSensorPosition(0);
 	}
 
 

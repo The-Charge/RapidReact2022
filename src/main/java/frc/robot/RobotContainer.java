@@ -143,7 +143,7 @@ liftBtn.whenPressed(new LiftArm( m_arm ) ,true);
 //     SmartDashboard.putData("pivotArmForwardBtn",new ManualPivot(0, m_pivot) );
 
 final JoystickButton teleArmUpBtn = new JoystickButton(buttonBox, 5);        
-teleArmUpBtn.whileHeld(new TelescopeClimber(0.8, m_telescope) ,true);
+teleArmUpBtn.whileHeld(new ManualTele(0.8, m_telescope) ,true);
     SmartDashboard.putData("teleArmUpBtn",new TelescopeClimber(0, m_telescope) );
 
 // final JoystickButton pivotArmBackwardBtn = new JoystickButton(buttonBox, 4);        
@@ -158,7 +158,7 @@ SmartDashboard.putData("resetDrivetrain", new InstantCommand(() -> m_drivetrain.
 //     SmartDashboard.putData("pivotArmBackwardBtn",new ManualPivot(0, m_pivot) );
 
 final JoystickButton teleArmDownBtn = new JoystickButton(buttonBox, 3);        
-teleArmDownBtn.whileHeld(new TelescopeClimber(-0.8, m_telescope) ,true);
+teleArmDownBtn.whileHeld(new TelescopeClimber(0, m_telescope) ,true);
     SmartDashboard.putData("teleArmDownBtn",new TelescopeClimber(0, m_telescope) );
 
 final JoystickButton intakeBtn = new JoystickButton(buttonBox, 2);        
