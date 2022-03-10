@@ -46,6 +46,7 @@ public class Robot extends TimedRobot {
 
 
         RobotContainer.getInstance().m_pivot.initPivotMotionMagic();
+        RobotContainer.getInstance().m_telescope.initTeleMotionMagic();
     }
 
     /**

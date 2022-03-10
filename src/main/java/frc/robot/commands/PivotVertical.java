@@ -59,7 +59,7 @@ public class PivotVertical extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        double angle = -RobotContainer.getInstance().getleftJoystick().getRawAxis(3);
+        double angle = -RobotContainer.getInstance().getbuttonBox().getRawAxis(0);
         angle *= 45.0;
         MathUtil.clamp(angle, -25, 40);
         // boolean currState1 = RobotContainer.getInstance().getbuttonBox().getRawButton(6);

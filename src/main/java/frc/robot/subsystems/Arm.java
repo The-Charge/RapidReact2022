@@ -68,7 +68,7 @@ liftPiston = new DoubleSolenoid(1, PneumaticsModuleType.REVPH, 0, 1);
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        SmartDashboard.putBoolean("Arm Up", liftPiston.isFwdSolenoidDisabled());
+        SmartDashboard.putBoolean("Arm Up", !liftPiston.isFwdSolenoidDisabled());
         SmartDashboard.putNumber("Intake Speed", armMotor.getSelectedSensorVelocity());
     }
     public void stop() {

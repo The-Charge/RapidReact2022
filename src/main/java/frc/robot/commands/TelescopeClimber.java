@@ -55,9 +55,6 @@ public class TelescopeClimber extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_telescope.initializeMotors();
-        m_telescope.brakemodeOn();
-        m_telescope.initTeleMotionMagic(m_distance);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -98,6 +95,7 @@ public class TelescopeClimber extends CommandBase {
         // else {
         //     m_telescope.climbUp();
         // }
+        m_telescope.runMotionMagic(m_distance);
 
     }
 
@@ -110,12 +108,12 @@ public class TelescopeClimber extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        //return false;
-        if(m_telescope.getLeftTeleEncoder() - m_distance < 0)
-        {
-         return m_telescope.pastFwdLimitSwitchLeftTele() && m_telescope.pastFwdLimitSwitchRightTele();
-         }
-         return m_telescope.pastRevLimitSwitchLeftTele() && m_telescope.pastRevLimitSwitchRightTele();
+        return false;
+        // if(m_telescope.getLeftTeleEncoder() - m_distance < 0)
+        // {
+        //  return m_telescope.pastFwdLimitSwitchLeftTele() && m_telescope.pastFwdLimitSwitchRightTele();
+        //  }
+        //  return m_telescope.pastRevLimitSwitchLeftTele() && m_telescope.pastRevLimitSwitchRightTele();
     }
 
     @Override

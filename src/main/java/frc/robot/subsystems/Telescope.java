@@ -146,7 +146,7 @@ rightTeleMotor = new WPI_TalonSRX(8);
 	}
 
 
-    public void initTeleMotionMagic(double dist){
+    public void initTeleMotionMagic(){
 		leftTeleMotor.configFactoryDefault();
 		rightTeleMotor.configFactoryDefault();
 
@@ -162,8 +162,6 @@ rightTeleMotor = new WPI_TalonSRX(8);
 		// rightTeleMotor.configForwardSoftLimitEnable(true);
 		// leftTeleMotor.configReverseSoftLimitEnable(true);
 		// rightTeleMotor.configReverseSoftLimitEnable(true);
-
-		m_distance = dist * TICKSPERFOOT;
 
 
 		leftTeleMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, PID_INDEX, kTimeoutMs);
@@ -211,12 +209,16 @@ rightTeleMotor = new WPI_TalonSRX(8);
 		leftTeleMotor.configMotionSCurveStrength(TELE_SMOOTHING);
 		rightTeleMotor.configMotionSCurveStrength(TELE_SMOOTHING);
 
+	}
+
+
+	public void runMotionMagic(double dist){
+		m_distance = dist * TICKSPERFOOT;
+
 		leftTeleMotor.set(ControlMode.MotionMagic, m_distance);
 
 		rightTeleMotor.set(ControlMode.MotionMagic, m_distance);
-
 	}
-
 	
 
 	public double getLeftTeleEncoder(){
