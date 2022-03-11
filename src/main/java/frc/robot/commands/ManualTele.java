@@ -71,11 +71,12 @@ public class ManualTele extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if(m_speed > 0)
-        {
-         return m_telescope.pastFwdLimitSwitchLeftTele() && m_telescope.pastFwdLimitSwitchRightTele();
-         }
-         return m_telescope.pastRevLimitSwitchLeftTele() && m_telescope.pastRevLimitSwitchRightTele();
+        return false;
+        // if(m_speed > 0)
+        // {
+        //  return m_telescope.pastFwdLimitSwitchLeftTele() && m_telescope.pastFwdLimitSwitchRightTele();
+        //  }
+        //  return m_telescope.pastRevLimitSwitchLeftTele() && m_telescope.pastRevLimitSwitchRightTele();
     }
 
     @Override

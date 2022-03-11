@@ -62,51 +62,16 @@ public class TelescopeClimber extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-    //     double leftSpeed = m_speed;
-    //     double rightSpeed = m_speed * correctionR;
-    //     SmartDashboard.putBoolean("leftRev", false);
-    //     SmartDashboard.putBoolean("leftFwd", false);
-    //     SmartDashboard.putBoolean("rightRev", false);
-    //     SmartDashboard.putBoolean("rightFwd", false);
-    //     if(m_speed > 0)
-    //     {
-    //      if(m_telescope.pastFwdLimitSwitchLeftTele()){
-    //         SmartDashboard.putBoolean("leftFwd", true);
-    //         leftSpeed = 0;
-    //      }
-    //      if(m_telescope.pastFwdLimitSwitchRightTele()){
-    //         SmartDashboard.putBoolean("leftFwd", true);
-    //           rightSpeed = 0;
-    //      }
-    //     }
-    //     else
-    //     {
-    //         if(m_telescope.pastRevLimitSwitchLeftTele()){
-    //             SmartDashboard.putBoolean("leftRev", true);
-    //            leftSpeed = 0;
-    //         }
-    //         if(m_telescope.pastRevLimitSwitchRightTele()) {
-    //             SmartDashboard.putBoolean("rightRev", true);
-    //              rightSpeed = 0;
-    //         }
-    //     }
-    //    m_telescope.runTele(leftSpeed, rightSpeed);
-        // if(RobotContainer.getInstance().m_drivetrain.getGyroZ() < THRESHOLD){
-        //     m_telescope.stayHanging();
-        // }
-        // else {
-        //     m_telescope.climbUp();
+
+        // if(m_telescope.pastRevLimitSwitchLeftTele()){
+        //     m_telescope.resetLeftEncoder();
+        //     setpointL = 100;
         // }
 
-        if(m_telescope.pastRevLimitSwitchLeftTele()){
-            m_telescope.resetLeftEncoder();
-            setpointL = 100;
-        }
-
-        if(m_telescope.pastRevLimitSwitchRightTele()){
-            m_telescope.resetRightEncoder();
-            setpointR = 100;
-        }
+        // if(m_telescope.pastRevLimitSwitchRightTele()){
+        //     m_telescope.resetRightEncoder();
+        //     setpointR = 100;
+        // }
 
         m_telescope.runLeftMotionMagic(setpointL);
         m_telescope.runRightMotionMagic(setpointR);
