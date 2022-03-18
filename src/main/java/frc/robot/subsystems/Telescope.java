@@ -191,8 +191,8 @@ rightTeleMotor = new WPI_TalonSRX(8);
 		leftTeleMotor.configPeakOutputForward(1, kTimeoutMs);
 		leftTeleMotor.configPeakOutputReverse(-1, kTimeoutMs);
 
-		rightTeleMotor.configNominalOutputForward(0, kTimeoutMs);
-		rightTeleMotor.configNominalOutputReverse(0, kTimeoutMs);
+		rightTeleMotor.configNominalOutputForward(0.15, kTimeoutMs);
+		rightTeleMotor.configNominalOutputReverse(-0.15, kTimeoutMs);
 		rightTeleMotor.configPeakOutputForward(1, kTimeoutMs);
 		rightTeleMotor.configPeakOutputReverse(-1, kTimeoutMs);
 
