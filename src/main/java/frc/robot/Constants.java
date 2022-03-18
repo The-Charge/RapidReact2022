@@ -34,7 +34,7 @@ public class Constants {
         public static final boolean kLeftEncoderReversed = false;
         public static final boolean kRightEncoderReversed = true;
 
-        public static final double kTrackwidthMeters = 0.483;
+        public static final double kTrackwidthMeters = 0.583;
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(
                 kTrackwidthMeters);
 
@@ -46,9 +46,9 @@ public class Constants {
 
         public static final boolean kGyroReversed = true;
         // TODO test/tune these values
-        public static final double ksVolts = 0.63537; // .501
-        public static final double kvVoltSecondsPerMeter = 2.4568; //1.6
-        public static final double kaVoltSecondsSquaredPerMeter = 0.39943;
+        public static final double ksVolts = .62031;//0.75588; // .501
+        public static final double kvVoltSecondsPerMeter = 2.4678; //1.5582; //1.6
+        public static final double kaVoltSecondsSquaredPerMeter = .39963;// 0.176;
 
         // Example value only - as above, this must be tuned for your drive!
         public static final double kPDriveVel = 3.4457; //4
@@ -58,17 +58,21 @@ public class Constants {
         public static final int kDriverControllerPort = 1;
     }
 
+    public static final class PivotConstants{
+        public static final double tickPerDegree = 90;
+    }
+    
     public static final class AutoConstants {
-        public static final double initElevation = .8;
-        public static final double initShootSpeed = 0.65;
+        public static final double intakeSpeed = 0.4;
+        public static final double deliverSpeed = 1.0;
+        public static final double teleSpeed = 0.8;
         public static final double kMaxSpeedMetersPerSecond = 1.5; // 1.0
         public static final double kMaxAccelerationMetersPerSecondSquared = 1.0; // .5
 
         // Reasonable baseline values for a RAMSETE follower in units of meters and
         // seconds
         public static final double kRamseteB = 2;
-        public static final double kRamseteZeta = 0.7;
-    
+        public static final double kRamseteZeta = 0.7;    
     }
 }
 

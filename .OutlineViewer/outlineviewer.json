@@ -1,0 +1,15 @@
+{
+  "NetworkTables Settings": {
+    "mode": "Client",
+    "serverTeam": "2619"
+  },
+  "Usage": {
+    "Client": {
+      "Dashboard": {
+        "open": true
+      },
+      "open": true
+    },
+    "open": true
+  }
+}

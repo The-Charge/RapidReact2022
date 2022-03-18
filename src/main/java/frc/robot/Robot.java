@@ -43,6 +43,7 @@ public class Robot extends TimedRobot {
         // autonomous chooser on the dashboard.
         m_robotContainer = RobotContainer.getInstance();
         HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
+        RobotContainer.getInstance().m_pivot.initPivotMotionMagic();
     }
 
     /**
@@ -59,7 +60,7 @@ public class Robot extends TimedRobot {
         // and running subsystem periodic() methods.  This must be called from the robot's periodic
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run();
-
+        SmartDashboard.putNumber("Pitch",m_robotContainer.m_drivetrain.getPitch());
         SmartDashboard.putNumber("GYRO", RobotContainer.getInstance().m_drivetrain.getHeading());
         SmartDashboard.putNumber("LeftEnc", RobotContainer.getInstance().m_drivetrain.getLeftEncoder());
         SmartDashboard.putNumber("RightEnc", RobotContainer.getInstance().m_drivetrain.getRightEncoder());
@@ -71,6 +72,7 @@ public class Robot extends TimedRobot {
     */
     @Override
     public void disabledInit() {
+        RobotContainer.getInstance().m_drivetrain.setCoastMode();;
     }
 
     @Override
@@ -83,6 +85,8 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+
+        RobotContainer.getInstance().m_drivetrain.initializeMotors();
 
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
@@ -106,6 +110,7 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
+
     }
 
     /**
