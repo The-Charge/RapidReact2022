@@ -16,6 +16,8 @@ package frc.robot.commands;
 
 import java.util.Date;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -68,6 +70,7 @@ public class DriverAssist extends CommandBase {
         lastSeen = new Date().getTime();
         
         SmartDashboard.putBoolean("Driver Assist", true);
+        m_drivetrain.setControlMode(ControlMode.PercentOutput);
     }
 
     // Called every time the scheduler runs while the command is scheduled.

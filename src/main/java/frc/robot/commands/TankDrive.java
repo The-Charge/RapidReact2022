@@ -51,8 +51,10 @@ public class TankDrive extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_drivetrain.setControlMode(ControlMode.PercentOutput);
+        //m_drivetrain.setControlMode(ControlMode.PercentOutput);
+       // m_drivetrain.setControlMode(ControlMode.Velocity);
         m_drivetrain.initializeMotors();
+        m_drivetrain.initSpeedMode();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -62,7 +64,8 @@ public class TankDrive extends CommandBase {
         rightSpeed = -RobotContainer.getInstance().getrightJoystick().getY();
         leftSpeed = -RobotContainer.getInstance().getleftJoystick().getY();
 
-        m_drivetrain.run(leftSpeed, rightSpeed);
+         //m_drivetrain.run(leftSpeed, rightSpeed);
+        m_drivetrain.runVelocityMode(leftSpeed, rightSpeed);
     }
 
     // Called once the command ends or is interrupted.

@@ -108,6 +108,14 @@ private WPI_TalonFX rightBackMotor;
 	private static final double TURN_kIzone = 200;
 	private static final double TURN_PEAK = 1.00;
 
+	private static final int PID_SLOT_SPEED_MODE = 2;
+	private static final double SPEED_P_CONSTANT = .2;
+	private static final double SPEED_I_CONSTANT = 0.0;
+	private static final double SPEED_D_CONSTANT = 2.0;
+	private static final double SPEED_F_CONSTANT = 0.0;
+
+	private static final double MAX_VELOCITY = 20000;
+
 	private static double m_distance;
 	private static final double THRESHOLD = 200;
 	private static final double MAX_TEMP = 35;
@@ -194,11 +202,51 @@ rightBackMotor = new WPI_TalonFX(4);
 			r *= 0.25;
 		}
 
-		l = Math.pow(l, 3);
-		r = Math.pow(r, 3);
+		// l = Math.pow(l, 3);
+		// r = Math.pow(r, 3);
 		leftFrontMotor.set(l);
 		rightFrontMotor.set(r);
 	}
+
+	public void runVelocityMode(double l, double r){
+
+		l = Math.pow(l, 1);
+		r = Math.pow(r, 1);
+
+		if (isReversed) {
+			l *= -1; // inverse left motor speed
+			r *= -1; // inverse right motor speed
+		}
+		if (halfSpeed) {
+			l *= 0.5;
+			r *= 0.5;
+		} else if (quarterSpeed) {
+			l *= 0.25;
+			r *= 0.25;
+		}
+
+		leftFrontMotor.set(ControlMode.Velocity, l*MAX_VELOCITY);
+		rightFrontMotor.set(ControlMode.Velocity, r*MAX_VELOCITY);
+
+	}
+
+
+	public void initSpeedMode() {
+        leftFrontMotor.config_kP(PID_SLOT_SPEED_MODE, SPEED_P_CONSTANT);
+        leftFrontMotor.config_kI(PID_SLOT_SPEED_MODE, SPEED_I_CONSTANT);
+        leftFrontMotor.config_kD(PID_SLOT_SPEED_MODE, SPEED_D_CONSTANT);
+        leftFrontMotor.config_kF(PID_SLOT_SPEED_MODE, SPEED_F_CONSTANT);
+        leftFrontMotor.selectProfileSlot(PID_SLOT_SPEED_MODE, 0);
+
+		rightFrontMotor.config_kP(PID_SLOT_SPEED_MODE, SPEED_P_CONSTANT);
+        rightFrontMotor.config_kI(PID_SLOT_SPEED_MODE, SPEED_I_CONSTANT);
+        rightFrontMotor.config_kD(PID_SLOT_SPEED_MODE, SPEED_D_CONSTANT);
+        rightFrontMotor.config_kF(PID_SLOT_SPEED_MODE, SPEED_F_CONSTANT);
+    	rightFrontMotor.selectProfileSlot(PID_SLOT_SPEED_MODE, 0);
+
+        leftFrontMotor.set(ControlMode.Velocity, 0);
+		rightFrontMotor.set(ControlMode.Velocity, 0);
+    }
 
 	public void stop() {
 		leftFrontMotor.set(0);
