@@ -61,7 +61,8 @@ public class PivotSetpoint extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_pivot.runGyroMM(m_angle);
+        double diff = m_angle - RobotContainer.getInstance().m_drivetrain.getPitch();
+        m_pivot.increaseAngle(diff);
     }
 
     // Called once the command ends or is interrupted.
@@ -72,7 +73,7 @@ public class PivotSetpoint extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return m_pivot.atSetpoint();
+        return m_pivot.isPivotAtDestination();
     }
 
     @Override

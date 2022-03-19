@@ -147,7 +147,7 @@ final JoystickButton btn = new JoystickButton(buttonBox, 4);
 btn.whenPressed(new PivotSetpoint(20, m_pivot) ,true);
 
 final JoystickButton teleArmUpBtn = new JoystickButton(buttonBox, 5);        
-teleArmUpBtn.whileHeld(new ManualTele(0.8, m_telescope) ,true);
+teleArmUpBtn.whileHeld(new ManualTele(0.8, false, m_telescope) ,true);
 
 // final JoystickButton pivotArmBackwardBtn = new JoystickButton(buttonBox, 4);        
 // pivotArmBackwardBtn.whileHeld(new ManualPivot(-0.01, m_pivot) ,true);

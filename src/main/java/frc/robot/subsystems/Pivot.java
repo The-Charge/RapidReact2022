@@ -295,6 +295,15 @@ public class Pivot extends SubsystemBase {
 		rightPivotMotor.set(next); 
 	}
 
+	public void increaseAngle(double inc){
+		double ticks = getLeftPivotEncoder();
+		double angle = ticks / TICKSPERDEGREE;
+		angle += inc;
+
+		runDefaultMM(angle);
+	
+	}
+
 	public boolean atSetpoint(){
 		return m_controller.atSetpoint();
 	}

@@ -62,7 +62,15 @@ private WPI_TalonSRX rightTeleMotor;
 	private static final double FEEDFORWARD = 0.07;
 
 	private final double VOLTAGE_STATIC = 0.2;
-    private final double VOLTAGE_CLIMB = AutoConstants.teleSpeed;
+	private final double VOLTAGE_CLIMB = AutoConstants.teleSpeed;
+	
+	private static final int ENC_ARRAY_LEN = 5;
+	private static final int ENC_DIFFERENCE = 5;
+	private static final double TELE_DEADBAND = 0.02;
+
+	private int[] leftEnc = {0,0,0,0,0};
+	private int[] rightEnc = {0,0,0,0,0};
+	private int encIndex = 0;
     
     /**
     *
@@ -91,6 +99,12 @@ rightTeleMotor = new WPI_TalonSRX(8);
 
 		SmartDashboard.putNumber("Right Output", rightTeleMotor.get());
 		SmartDashboard.putNumber("Left Output", leftTeleMotor.get());
+
+		int currentLeftEnc = (int)getLeftTeleEncoder();
+		int currentRightEnc = (int)getRightTeleEncoder();
+		leftEnc[encIndex] = currentLeftEnc;
+		rightEnc[encIndex] = currentRightEnc;
+		encIndex = (encIndex+1) % ENC_ARRAY_LEN;
     }
 
     @Override
@@ -261,33 +275,7 @@ rightTeleMotor = new WPI_TalonSRX(8);
 		return (Math.abs(getLeftTeleEncoder() - m_distance) < THRESHOLD || Math.abs(getLeftTeleEncoder() - m_distance) < THRESHOLD);
 	}
 
-	// public boolean pastLimitSwitch(){
-	// 	return leftTeleMotor.getSensorCollection().isRevLimitSwitchClosed() && rightTeleMotor.getSensorCollection().isRevLimitSwitchClosed();
-	// }
-
-	// public boolean pastLimitSwitchLeftTele(){
-	// 	return leftTeleMotor.getSensorCollection().isRevLimitSwitchClosed();
-	// }
-
-	// public boolean pastLimitSwitchRightTele(){
-	// 	return rightTeleMotor.getSensorCollection().isRevLimitSwitchClosed();
-	// }
-
-	// public void resetPosTop() {
-    // 	leftTeleMotor.setSelectedSensorPosition(TICKS_TOP, 0, kTimeoutMs);
-	// 	rightTeleMotor.setSelectedSensorPosition(TICKS_TOP, 0, kTimeoutMs);
-    // }
-
-	// public void resetPosBottom() {
-    // 	leftTeleMotor.setSelectedSensorPosition(TICKS_BOTTOM, 0, kTimeoutMs);
-	// 	rightTeleMotor.setSelectedSensorPosition(TICKS_BOTTOM, 0, kTimeoutMs);
-    // }
-
-	// public void overrideSoftLimit(boolean change) {
-	// 	leftTeleMotor.overrideSoftLimitsEnable(change);
-	// 	rightTeleMotor.overrideSoftLimitsEnable(change);
-	// }
-
+	
 
 	public void setControlMode(ControlMode mode){
 		leftTeleMotor.set(mode, 0);
@@ -303,6 +291,24 @@ rightTeleMotor = new WPI_TalonSRX(8);
 		leftTeleMotor.set(VOLTAGE_STATIC);
 		rightTeleMotor.set(VOLTAGE_STATIC);
 	}
+
+
+	public boolean isLeftStopped(){
+		boolean stopped = Math.abs(leftEnc[0]-leftEnc[1]) < ENC_DIFFERENCE;
+		for (int i = 1; i < ENC_ARRAY_LEN-1; i++){
+			stopped = stopped && Math.abs(leftEnc[i]-leftEnc[i+1]) < ENC_DIFFERENCE; 
+		}
+		return stopped;
+	}
+
+	public boolean isRightStopped(){
+		boolean stopped = Math.abs(rightEnc[0]-rightEnc[1]) < ENC_DIFFERENCE;
+		for (int i = 1; i < ENC_ARRAY_LEN-1; i++){
+			stopped = stopped && Math.abs(rightEnc[i]-rightEnc[i+1]) < ENC_DIFFERENCE; 
+		}
+		return stopped;
+	}
+
 
 }
 
