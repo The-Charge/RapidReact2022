@@ -60,14 +60,14 @@ public class AutoClimb extends SequentialCommandGroup {
     public SequentialCommandGroup climbProcess(){
         return new SequentialCommandGroup(
             //-------------------------------------
-            new TelescopeClimber(RETRACT_TELEARM, m_telescope), //retract tele arm
-            new PivotClimber(STRAIGHT_PIVOTARM, m_pivot),     //get pivot arm above bar
+            new TelescopeClimber(RETRACT_TELEARM, m_telescope),     //retract tele arm
+            new PivotClimber(STRAIGHT_PIVOTARM, m_pivot),           //get pivot arm above bar
             new TelescopeClimber(EXTEND_TELEARM_OVERBAR, m_telescope),//extend tele arm. pivot is now on bar
-            new PivotClimber(BACK_PIVOTARM_45, m_pivot),    //rotates robot towards next bar
+            new PivotClimber(BACK_PIVOTARM_45, m_pivot),            //rotates robot towards next bar
             new TelescopeClimber(EXTEND_TELEARM_NEXTBAR, m_telescope), //extends tele arm to next bar
-            new PivotClimber(BACK_PIVOTARM_30, m_pivot),    //angles robot up to help grab next bar
+            new PivotClimber(BACK_PIVOTARM_30, m_pivot),            //angles robot up to help grab next bar
             new TelescopeClimber(EXTEND_TELEARM_OVERBAR, m_telescope),//retract and pulls robot onto next bar
-            new PivotClimber(FRONT_PIVOTARM_30, m_pivot)    //resets pivot arm
+            new PivotClimber(FRONT_PIVOTARM_30, m_pivot)            //resets pivot arm
             //------------------------------------
             //on wednesday, program button to stop autoclimb in case of emergency
         );
