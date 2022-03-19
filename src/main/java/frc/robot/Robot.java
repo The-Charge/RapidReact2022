@@ -46,7 +46,7 @@ public class Robot extends TimedRobot {
         HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
 
 
-        RobotContainer.getInstance().m_pivot.initPivotMotionMagic();
+        RobotContainer.getInstance().m_pivot.initDefaultMM();
         RobotContainer.getInstance().m_telescope.initTeleMotionMagic();
     }
 
@@ -65,7 +65,8 @@ public class Robot extends TimedRobot {
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run();
 
-        SmartDashboard.putNumber("GYRO", RobotContainer.getInstance().m_drivetrain.getHeading());
+        SmartDashboard.putNumber("YAW", RobotContainer.getInstance().m_drivetrain.getHeading());
+        SmartDashboard.putNumber("PITCH", RobotContainer.getInstance().m_drivetrain.getPitch());
         SmartDashboard.putNumber("LeftEnc", RobotContainer.getInstance().m_drivetrain.getLeftEncoder());
         SmartDashboard.putNumber("RightEnc", RobotContainer.getInstance().m_drivetrain.getRightEncoder());
         SmartDashboard.putNumber("robot time", Timer.getMatchTime());

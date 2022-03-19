@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.AutoConstants;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
@@ -58,6 +59,7 @@ private WPI_TalonSRX rightTeleMotor;
 	private static final double PIVOT_kD = 0.0;
 	private static final double PIVOT_kF = 0;
 	private static final int TELE_SMOOTHING = 4;
+	private static final double FEEDFORWARD = 0.07;
 
 	private final double VOLTAGE_STATIC = 0.2;
     private final double VOLTAGE_CLIMB = AutoConstants.teleSpeed;
@@ -223,12 +225,12 @@ rightTeleMotor = new WPI_TalonSRX(8);
 
 	public void runLeftMotionMagic(double dist){
 
-		leftTeleMotor.set(ControlMode.MotionMagic, dist);
+		leftTeleMotor.set(ControlMode.MotionMagic, dist, DemandType.ArbitraryFeedForward, FEEDFORWARD);
 	}
 
 	public void runRightMotionMagic(double dist){
 
-		rightTeleMotor.set(ControlMode.MotionMagic, dist);
+		rightTeleMotor.set(ControlMode.MotionMagic, dist, DemandType.ArbitraryFeedForward, FEEDFORWARD);
 	}
 	
 
