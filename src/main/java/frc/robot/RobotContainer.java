@@ -195,8 +195,8 @@ invertDriveBtn.whileHeld(new InvertDrive( m_drivetrain ) ,true);
     SmartDashboard.putData("invertDriveBtn",new InvertDrive( m_drivetrain ) );
 
 final JoystickButton assistBtn = new JoystickButton(leftJoystick, 1);        
-assistBtn.whileHeld(new DriverAssist( m_drivetrain ) ,true);
-    SmartDashboard.putData("assistBtn",new DriverAssist( m_drivetrain ) );
+assistBtn.whileHeld(new DriverAssist( m_drivetrain, m_arm ) ,true);
+    SmartDashboard.putData("assistBtn",new DriverAssist( m_drivetrain, m_arm ) );
 
 final JoystickButton alignBtn = new JoystickButton(leftJoystick, 8);        
 alignBtn.whileHeld(new ColorAlign( m_drivetrain ) ,true);
