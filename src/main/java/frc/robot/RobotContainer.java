@@ -123,7 +123,7 @@ private final Joystick leftJoystick = new Joystick(0);
     private void configureButtonBindings() {
 
         final JoystickButton climbBtn = new JoystickButton(buttonBox, 7);        
-        climbBtn.whileHeld(new AutoClimb(m_drivetrain, m_telescope, m_pivot) ,true);
+        climbBtn.whenPressed(new AutoClimb(m_drivetrain, m_arm, m_telescope, m_pivot) ,true);
 
     final JoystickButton teleXSecBtn = new JoystickButton(buttonBox, 8);        
     teleXSecBtn.whenPressed(new TelescopeXSeconds(0.5, m_telescope) ,true);
@@ -147,7 +147,7 @@ final JoystickButton btn = new JoystickButton(buttonBox, 4);
 btn.whenPressed(new PivotSetpoint(20, m_pivot) ,true);
 
 final JoystickButton teleArmUpBtn = new JoystickButton(buttonBox, 5);        
-teleArmUpBtn.whenPressed(new ManualTele(0.5, false, m_telescope) ,true);
+teleArmUpBtn.whileHeld(new ManualTele(0.5, m_telescope) ,true);
 
 // final JoystickButton pivotArmBackwardBtn = new JoystickButton(buttonBox, 4);        
 // pivotArmBackwardBtn.whileHeld(new ManualPivot(-0.01, m_pivot) ,true);
@@ -162,7 +162,7 @@ SmartDashboard.putData("resetDrivetrain", new InstantCommand(() -> m_drivetrain.
 //     SmartDashboard.putData("pivotArmBackwardBtn",new ManualPivot(0, m_pivot) );
 
 final JoystickButton teleArmDownBtn = new JoystickButton(buttonBox, 3);        
-teleArmDownBtn.whileHeld(new TelescopeClimber(500, m_telescope) ,true);
+teleArmDownBtn.whenPressed(new TelescopeClimber(0, m_telescope) ,true);
 
 final JoystickButton intakeBtn = new JoystickButton(buttonBox, 2);        
 intakeBtn.whileHeld(new IntakeCargo(0.4, m_arm) ,true);

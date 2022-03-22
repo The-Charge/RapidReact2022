@@ -54,24 +54,24 @@ public class DriveXFeet extends CommandBase {
     public void initialize() {
         SmartDashboard.putBoolean("Auto Climb", true);
         m_drivetrain.resetEncoders();
-        m_drivetrain.initMotionMagic(m_distance);
+        m_drivetrain.runMotionMagic(m_distance);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        SmartDashboard.putNumber("left encoder", m_drivetrain.getLeftEncoder());
-        SmartDashboard.putNumber("right encoder", m_drivetrain.getRightEncoder());
     }
 
     // Called once the command ends or is interrupted.
     @Override()
     public void end(boolean interrupted) {
+        m_drivetrain.stop();
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
+        SmartDashboard.putBoolean("at Dest", m_drivetrain.isAtPIDDestination());
         return m_drivetrain.isAtPIDDestination();
     }
 

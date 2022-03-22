@@ -87,7 +87,7 @@ private WPI_TalonFX rightBackMotor;
 
 	private final static int kEncoderUnitsPerRotation = 51711;
 
-	private static final double TICKSPERFEET = 9938;
+	private static final double TICKSPERFEET = 14312;
 
 	private final static int PID_PRIMARY = 0;
 	private final static int PID_TURN = 1;
@@ -180,8 +180,8 @@ rightBackMotor = new WPI_TalonFX(4);
 		leftBackMotor.configOpenloopRamp(0.5);
 		leftFrontMotor.configOpenloopRamp(0.5);
 
-		leftFrontMotor.configNeutralDeadband(0.05);
-		rightFrontMotor.configNeutralDeadband(0.05);
+		leftFrontMotor.configNeutralDeadband(0.08);
+		rightFrontMotor.configNeutralDeadband(0.08);
 
 		resetEncoders();
 		setBrakeMode();
@@ -302,7 +302,7 @@ rightBackMotor = new WPI_TalonFX(4);
 
 	}
 	
-	public void initMotionMagic(double distance) {
+	public void initMotionMagic() {
 
 		leftFrontMotor.configFactoryDefault();
 		rightFrontMotor.configFactoryDefault();
@@ -419,16 +419,11 @@ rightBackMotor = new WPI_TalonFX(4);
 		rightFrontMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_Targets, 10);
 		resetEncoders();
 
-		m_distance = distance;
-		m_distance *= TICKSPERFEET;
+		
 
 		rightFrontMotor.selectProfileSlot(kSlot_Distance, PID_PRIMARY);
 		rightFrontMotor.selectProfileSlot(kSlot_Turning, PID_TURN);
 
-		double target_turn = rightFrontMotor.getSelectedSensorPosition(1);
-
-		rightFrontMotor.set(TalonFXControlMode.MotionMagic, m_distance, DemandType.AuxPID, target_turn);
-		leftFrontMotor.follow(rightFrontMotor, FollowerType.AuxOutput1);
 
 	}
 
@@ -456,6 +451,16 @@ rightBackMotor = new WPI_TalonFX(4);
 			* the real-world value
 			*/
 		masterConfig.primaryPID.selectedFeedbackCoefficient = 0.5;
+	}
+
+	public void runMotionMagic(double distance){
+		m_distance = distance;
+		m_distance *= TICKSPERFEET;
+
+		double target_turn = rightFrontMotor.getSelectedSensorPosition(1);
+
+		rightFrontMotor.set(TalonFXControlMode.MotionMagic, m_distance, DemandType.AuxPID, target_turn);
+		leftFrontMotor.follow(rightFrontMotor, FollowerType.AuxOutput1);
 	}
 
 	public void setRobotTurnConfigs(TalonFXInvertType masterInvertType, TalonFXConfiguration masterConfig) {

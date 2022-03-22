@@ -54,7 +54,7 @@ public class TelescopeXSeconds extends SequentialCommandGroup {
     m_telescope = telescope;
     addCommands(
         new ParallelRaceGroup(
-            new ManualTele(0.0, false, m_telescope),
+            new ManualTele(0.0, m_telescope),
             new WaitCommand(seconds)
 
         )

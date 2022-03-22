@@ -65,7 +65,7 @@ private WPI_TalonSRX rightTeleMotor;
 	private final double VOLTAGE_CLIMB = AutoConstants.teleSpeed;
 	
 	private static final int ENC_ARRAY_LEN = 5;
-	private static final int ENC_DIFFERENCE = 10;
+	private static final int ENC_DIFFERENCE = 5;
 	private static final double TELE_DEADBAND = 0.02;
 	private double rightSpeed = 0;
 	private double leftSpeed = 0;
@@ -103,7 +103,7 @@ rightTeleMotor = new WPI_TalonSRX(8);
 		SmartDashboard.putNumber("Right Output", rightTeleMotor.get());
 		SmartDashboard.putNumber("Left Output", leftTeleMotor.get());
 
-		SmartDashboard.putNumberArray("left Array", leftEnc);
+		SmartDashboard.putNumberArray("right Array", rightEnc);
 
 		int currentLeftEnc = (int)getLeftTeleEncoder();
 		int currentRightEnc = (int)getRightTeleEncoder();
@@ -196,6 +196,7 @@ rightTeleMotor = new WPI_TalonSRX(8);
 
 		brakemodeOn();
 		initializeMotors();
+		resetTeleEncoders();
 
 		//  leftTeleMotor.configForwardSoftLimitThreshold(SAFETY_TICKS_TOP);
 		//  rightTeleMotor.configForwardSoftLimitThreshold(SAFETY_TICKS_TOP);
