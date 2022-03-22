@@ -57,6 +57,8 @@ public class TelescopeClimber extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        setpointL = m_distance;
+        setpointR = m_distance;
     }
 
     // Called every time the scheduler runs while the command is scheduled.

@@ -41,9 +41,9 @@ public class AutoClimb extends SequentialCommandGroup {
         m_telescope = telescope;
         m_pivot = pivot;
         addCommands(
-            new PivotSetpoint(10, m_pivot),
-            new InstantCommand(() -> SmartDashboard.putBoolean("DONE", true)),
-            new PivotSetpoint(45, m_pivot)
+            new PivotSetpoint(2, m_pivot)
+            // new InstantCommand(() -> SmartDashboard.putBoolean("DONE", true)),
+            // new PivotSetpoint(45, m_pivot)
             // new DriveXFeet(FRONT_DRIVE_DISTANCE_4, m_drivetrain),//move half foot past bar
             // new PivotSetpoint(FRONT_PIVOTARM_30, m_pivot),//move pivot arm forward
             // new TelescopeClimber(EXTEND_TELEARM, m_telescope),//extend tele arm

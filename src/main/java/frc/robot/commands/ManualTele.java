@@ -52,11 +52,17 @@ public class ManualTele extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_telescope.initializeMotors();
+        //m_telescope.initializeMotors();
         leftSpeed = setLeftSpeed;
         rightSpeed = setRightSpeed;
-        m_telescope.setControlMode(ControlMode.PercentOutput);
-        m_telescope.runTele(leftSpeed, rightSpeed);
+        m_telescope.setControlMode(ControlMode.MotionMagic);
+        m_telescope.initTeleMotionMagic();
+        m_telescope.runLeftMotionMagic(30000);
+        m_telescope.runRightMotionMagic(30000);
+        isLeftStopped = false;
+        isRightStopped = false;
+        //m_telescope.setControlMode(ControlMode.PercentOutput);
+        //m_telescope.runTele(leftSpeed, rightSpeed);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -67,7 +73,9 @@ public class ManualTele extends CommandBase {
                 if (isPivotNext)leftSpeed = HANG_VOL;
                 else leftSpeed = 0;
                 isLeftStopped = true;
-                m_telescope.runTele(leftSpeed,rightSpeed);
+                double l = m_telescope.getLeftTeleEncoder();
+                m_telescope.runLeftMotionMagic(l);
+                //m_telescope.runTele(leftSpeed,rightSpeed);
             }
         } 
         if (!isRightStopped){
@@ -75,7 +83,9 @@ public class ManualTele extends CommandBase {
                 if (isPivotNext)rightSpeed = HANG_VOL;
                 else rightSpeed = 0;
                 isRightStopped = true;
-                m_telescope.runTele(leftSpeed,rightSpeed);
+                double r = m_telescope.getRightTeleEncoder();
+                m_telescope.runRightMotionMagic(r);
+               // m_telescope.runTele(leftSpeed,rightSpeed);
             }
         } 
     }
@@ -83,6 +93,7 @@ public class ManualTele extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        m_telescope.stopTele();
     }
 
     // Returns true when the command should end.

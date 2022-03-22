@@ -72,7 +72,6 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("robot time", Timer.getMatchTime());
     }
 
-
     /**
     * This function is called once each time the robot enters Disabled mode.
     */
