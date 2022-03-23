@@ -162,7 +162,7 @@ SmartDashboard.putData("resetDrivetrain", new InstantCommand(() -> m_drivetrain.
 //     SmartDashboard.putData("pivotArmBackwardBtn",new ManualPivot(0, m_pivot) );
 
 final JoystickButton teleArmDownBtn = new JoystickButton(buttonBox, 3);        
-teleArmDownBtn.whenPressed(new TelescopeClimber(0, m_telescope) ,true);
+teleArmDownBtn.whenPressed(new AutoTele(-0.8, true, m_telescope) ,true);
 
 final JoystickButton intakeBtn = new JoystickButton(buttonBox, 2);        
 intakeBtn.whileHeld(new IntakeCargo(0.4, m_arm) ,true);

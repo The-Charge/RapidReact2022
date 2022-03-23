@@ -64,14 +64,14 @@ private WPI_TalonSRX rightTeleMotor;
 	private final double VOLTAGE_STATIC = 0.2;
 	private final double VOLTAGE_CLIMB = AutoConstants.teleSpeed;
 	
-	private static final int ENC_ARRAY_LEN = 5;
-	private static final int ENC_DIFFERENCE = 5;
+	private static final int ENC_ARRAY_LEN = 10;
+	private static final int ENC_DIFFERENCE = 1;
 	private static final double TELE_DEADBAND = 0.02;
 	private double rightSpeed = 0;
 	private double leftSpeed = 0;
 
-	private double[] leftEnc = {0,0,0,0,0};
-	private double[] rightEnc = {0,0,0,0,0};
+	private double[] leftEnc = {0,0,0,0,0,0,0,0,0,0};
+	private double[] rightEnc = {0,0,0,0,0,0,0,0,0,0};
 	private int encIndex = 0;
     
     /**

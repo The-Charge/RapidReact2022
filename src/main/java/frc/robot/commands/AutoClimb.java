@@ -45,10 +45,11 @@ public class AutoClimb extends SequentialCommandGroup {
         m_pivot = pivot;
         m_arm = arm;
         addCommands(
-            new InstantCommand(() -> m_drivetrain.initMotionMagic()),
-            new ParallelCommandGroup(new DriveXFeet(4.0, m_drivetrain), new LowerArm(m_arm)),
-            //new ManualTele(0.5, false, m_telescope),
-            new DriveXFeet(2, m_drivetrain)
+            // new InstantCommand(() -> m_drivetrain.initMotionMagic()),
+            // new ParallelCommandGroup(new DriveXFeet(4.0, m_drivetrain), new LowerArm(m_arm)),
+            // new DriveXFeet(2, m_drivetrain)
+            //new AutoTele(-0.8, true, m_telescope),
+            new PivotToSensor(m_pivot)
            // new PivotSetpoint(2, m_pivot)
             // new InstantCommand(() -> SmartDashboard.putBoolean("DONE", true)),
             // new PivotSetpoint(45, m_pivot)

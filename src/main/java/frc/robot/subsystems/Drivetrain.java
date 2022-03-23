@@ -249,8 +249,8 @@ rightBackMotor = new WPI_TalonFX(4);
     }
 
 	public void stop() {
-		leftFrontMotor.set(0);
-		rightFrontMotor.set(0);
+		leftFrontMotor.set(ControlMode.PercentOutput, 0);
+		rightFrontMotor.set(ControlMode.PercentOutput, 0);
 	}
 
     public double getHeading() {
