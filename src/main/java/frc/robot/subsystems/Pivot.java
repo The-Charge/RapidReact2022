@@ -131,7 +131,7 @@ public class Pivot extends SubsystemBase {
 		SmartDashboard.putNumber("Pivot Right Enc", rightPivotMotor.getSelectedSensorPosition());
 
 		SmartDashboard.putNumber("Pivot ANGLE", m_angle);
-		SmartDashboard.putBoolean("Pivot Sensor", getSensor());
+		
 
 
 	}

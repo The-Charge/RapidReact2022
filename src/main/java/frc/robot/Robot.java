@@ -70,6 +70,8 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("LeftEnc", RobotContainer.getInstance().m_drivetrain.getLeftEncoder());
         SmartDashboard.putNumber("RightEnc", RobotContainer.getInstance().m_drivetrain.getRightEncoder());
         SmartDashboard.putNumber("robot time", Timer.getMatchTime());
+
+        SmartDashboard.putBoolean("Pivot Sensor", RobotContainer.getInstance().m_pivot.getSensor());
     }
 
     /**
