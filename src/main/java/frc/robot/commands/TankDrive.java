@@ -53,7 +53,7 @@ public class TankDrive extends CommandBase {
     public void initialize() {
        // m_drivetrain.setControlMode(ControlMode.PercentOutput);
        // m_drivetrain.setControlMode(ControlMode.Velocity);
-        m_drivetrain.initializeMotors();
+       // m_drivetrain.initializeMotors();
         m_drivetrain.initSpeedMode();
     }
 

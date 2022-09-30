@@ -50,7 +50,7 @@ shifterSolenoid = new Solenoid(1, PneumaticsModuleType.REVPH, 2);
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        SmartDashboard.putBoolean("High Gear", isLow());
+        //SmartDashboard.putBoolean("High Gear", isLow());
     }
 
     @Override
@@ -69,7 +69,7 @@ shifterSolenoid = new Solenoid(1, PneumaticsModuleType.REVPH, 2);
 
     public void shiftLow() {
         shifterSolenoid.set(false);
-        SmartDashboard.putBoolean("Low Gear", false);
+        SmartDashboard.putBoolean("High Gear", false);
     }
 
     public boolean isLow() {

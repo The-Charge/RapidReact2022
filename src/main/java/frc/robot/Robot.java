@@ -48,6 +48,9 @@ public class Robot extends TimedRobot {
 
         RobotContainer.getInstance().m_pivot.initDefaultMM();
         RobotContainer.getInstance().m_telescope.initTeleMotionMagic();
+
+        //RobotContainer.getInstance().m_drivetrain.initMotionMagic();
+        RobotContainer.getInstance().m_drivetrain.initializeMotors();
     }
 
     /**
@@ -71,6 +74,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("RightEnc", RobotContainer.getInstance().m_drivetrain.getRightEncoder());
         SmartDashboard.putNumber("robot time", Timer.getMatchTime());
 
+
         SmartDashboard.putBoolean("Pivot Sensor", RobotContainer.getInstance().m_pivot.getSensor());
     }
 
@@ -93,7 +97,7 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
         m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
-        RobotContainer.getInstance().m_drivetrain.initializeMotors();
+       
 
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
@@ -117,6 +121,8 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
+
+        RobotContainer.getInstance().m_drivetrain.setCoastMode();
 
     }
 

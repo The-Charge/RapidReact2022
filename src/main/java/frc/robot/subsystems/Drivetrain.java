@@ -18,9 +18,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.RemoteSensorSource;
+import com.ctre.phoenix.motorcontrol.StatorCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
@@ -111,7 +113,7 @@ private WPI_TalonFX rightBackMotor;
 
 	private static final int PID_SLOT_SPEED_MODE = 2;
 	private static final double SPEED_P_CONSTANT = .1;
-	private static final double SPEED_I_CONSTANT = 0.0001;
+	private static final double SPEED_I_CONSTANT = 0.0; //0.0001;
 	private static final double SPEED_D_CONSTANT = 0.5;
 	private static final double SPEED_F_CONSTANT = 0.0;
 
@@ -131,11 +133,11 @@ leftBackMotor = new WPI_TalonFX(2);
  
  
 
-rightFrontMotor = new WPI_TalonFX(3);
+rightFrontMotor = new WPI_TalonFX(4);
  
  
 
-rightBackMotor = new WPI_TalonFX(4);
+rightBackMotor = new WPI_TalonFX(3);
  
  
 
@@ -155,7 +157,12 @@ rightBackMotor = new WPI_TalonFX(4);
 		SmartDashboard.putNumber("LeftEnc", leftFrontMotor.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("RightEnc", rightFrontMotor.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("POSE X", getPose().getX());
-        SmartDashboard.putNumber("POSE Y", getPose().getY());
+		SmartDashboard.putNumber("POSE Y", getPose().getY());
+		
+		SmartDashboard.putNumber("left front TEMP", leftFrontMotor.getTemperature());
+		SmartDashboard.putNumber("right front TEMP", rightFrontMotor.getTemperature());
+		SmartDashboard.putNumber("left back TEMP", leftBackMotor.getTemperature());
+		SmartDashboard.putNumber("right back TEMP", rightBackMotor.getTemperature());
 
         m_odometry.update(Rotation2d.fromDegrees(getHeading()),
                 leftFrontMotor.getSelectedSensorPosition(0) * DriveConstants.kEncoderDistancePerPulse,
@@ -173,8 +180,8 @@ rightBackMotor = new WPI_TalonFX(4);
 		rightBackMotor.setInverted(true);
 		rightFrontMotor.setInverted(true);
 
+		leftBackMotor.follow(leftFrontMotor);
 		rightBackMotor.follow(rightFrontMotor);
-		leftFrontMotor.follow(leftBackMotor);
 
 		rightBackMotor.configOpenloopRamp(0.5);
 		rightFrontMotor.configOpenloopRamp(0.5);
@@ -190,9 +197,14 @@ rightBackMotor = new WPI_TalonFX(4);
 		leftBackMotor.configSupplyCurrentLimit(curr);
 		rightBackMotor.configSupplyCurrentLimit(curr);
 
+		StatorCurrentLimitConfiguration statorLimitCfg = new StatorCurrentLimitConfiguration(true, 40, 40, 0.1);
+		leftFrontMotor.configStatorCurrentLimit(statorLimitCfg);
+		rightFrontMotor.configStatorCurrentLimit(statorLimitCfg);
+		leftBackMotor.configStatorCurrentLimit(statorLimitCfg);
+		rightBackMotor.configStatorCurrentLimit(statorLimitCfg);
+
 		resetEncoders();
 		setBrakeMode();
-
     }
 
   
@@ -211,7 +223,7 @@ rightBackMotor = new WPI_TalonFX(4);
 
 		// l = Math.pow(l, 3);
 		// r = Math.pow(r, 3);
-		leftBackMotor.set(l);
+		leftFrontMotor.set(l);
 		rightFrontMotor.set(r);
 	}
 
@@ -232,18 +244,18 @@ rightBackMotor = new WPI_TalonFX(4);
 			r *= 0.25;
 		}
 
-		leftBackMotor.set(ControlMode.Velocity, l*MAX_VELOCITY);
+		leftFrontMotor.set(ControlMode.Velocity, l*MAX_VELOCITY);
 		rightFrontMotor.set(ControlMode.Velocity, r*MAX_VELOCITY);
 
 	}
 
 
 	public void initSpeedMode() {
-        leftBackMotor.config_kP(PID_SLOT_SPEED_MODE, SPEED_P_CONSTANT);
-        leftBackMotor.config_kI(PID_SLOT_SPEED_MODE, SPEED_I_CONSTANT);
-        leftBackMotor.config_kD(PID_SLOT_SPEED_MODE, SPEED_D_CONSTANT);
-        leftBackMotor.config_kF(PID_SLOT_SPEED_MODE, SPEED_F_CONSTANT);
-        leftBackMotor.selectProfileSlot(PID_SLOT_SPEED_MODE, 0);
+        leftFrontMotor.config_kP(PID_SLOT_SPEED_MODE, SPEED_P_CONSTANT);
+        leftFrontMotor.config_kI(PID_SLOT_SPEED_MODE, SPEED_I_CONSTANT);
+        leftFrontMotor.config_kD(PID_SLOT_SPEED_MODE, SPEED_D_CONSTANT);
+        leftFrontMotor.config_kF(PID_SLOT_SPEED_MODE, SPEED_F_CONSTANT);
+        leftFrontMotor.selectProfileSlot(PID_SLOT_SPEED_MODE, 0);
 
 		rightFrontMotor.config_kP(PID_SLOT_SPEED_MODE, SPEED_P_CONSTANT);
         rightFrontMotor.config_kI(PID_SLOT_SPEED_MODE, SPEED_I_CONSTANT);
@@ -251,12 +263,12 @@ rightBackMotor = new WPI_TalonFX(4);
         rightFrontMotor.config_kF(PID_SLOT_SPEED_MODE, SPEED_F_CONSTANT);
     	rightFrontMotor.selectProfileSlot(PID_SLOT_SPEED_MODE, 0);
 
-        leftBackMotor.set(ControlMode.Velocity, 0);
+        leftFrontMotor.set(ControlMode.Velocity, 0);
 		rightFrontMotor.set(ControlMode.Velocity, 0);
     }
 
 	public void stop() {
-		leftBackMotor.set(ControlMode.PercentOutput, 0);
+		leftFrontMotor.set(ControlMode.PercentOutput, 0);
 		rightFrontMotor.set(ControlMode.PercentOutput, 0);
 	}
 
@@ -274,21 +286,23 @@ rightBackMotor = new WPI_TalonFX(4);
 
     public void setCoastMode() {
         leftBackMotor.setNeutralMode(NeutralMode.Coast);
+		leftFrontMotor.setNeutralMode(NeutralMode.Coast);
         rightFrontMotor.setNeutralMode(NeutralMode.Coast);
+		rightBackMotor.setNeutralMode(NeutralMode.Coast);
     }
 
 
     public void setControlMode(ControlMode mode) {
-        leftBackMotor.set(mode, 0);
+        leftFrontMotor.set(mode, 0);
         rightFrontMotor.set(mode, 0);
     }
 
     public ControlMode getControlMode() {
-        return leftBackMotor.getControlMode();
+        return leftFrontMotor.getControlMode();
     }
 
     public void resetEncoders() {
-        leftBackMotor.setSelectedSensorPosition(0);
+        leftFrontMotor.setSelectedSensorPosition(0);
         rightFrontMotor.setSelectedSensorPosition(0);
     }
     public void setReversed(boolean r)
@@ -310,131 +324,176 @@ rightBackMotor = new WPI_TalonFX(4);
         quarterSpeed = !quarterSpeed;
 
 	}
-	
+
 	public void initMotionMagic() {
 
-		leftBackMotor.configFactoryDefault();
-		rightFrontMotor.configFactoryDefault();
+        leftFrontMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, PID_PRIMARY, kTimeoutMs);
+        rightFrontMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, PID_PRIMARY, kTimeoutMs);
 
-		TalonFXInvertType _leftInvert = TalonFXInvertType.CounterClockwise; // Same as invert = "false"
-		TalonFXInvertType _rightInvert = TalonFXInvertType.Clockwise; // Same as invert = "true"
+        leftFrontMotor.configNominalOutputForward(0, kTimeoutMs);
+        leftFrontMotor.configNominalOutputReverse(0, kTimeoutMs);
+        leftFrontMotor.configPeakOutputForward(1, kTimeoutMs);
+        leftFrontMotor.configPeakOutputReverse(-1, kTimeoutMs);
 
-		/* Configure output and sensor direction */
-		leftFrontMotor.setInverted(_leftInvert);
-		leftBackMotor.setInverted(_leftInvert);
-		rightFrontMotor.setInverted(_rightInvert);
-		rightBackMotor.setInverted(_rightInvert);
+        rightFrontMotor.configNominalOutputForward(0, kTimeoutMs);
+        rightFrontMotor.configNominalOutputReverse(0, kTimeoutMs);
+        rightFrontMotor.configPeakOutputForward(1, kTimeoutMs);
+        rightFrontMotor.configPeakOutputReverse(-1, kTimeoutMs);
 
-		rightBackMotor.follow(rightFrontMotor);
-		leftFrontMotor.follow(leftBackMotor);
+        leftFrontMotor.selectProfileSlot(kSlot_Distance, PID_PRIMARY);
+        rightFrontMotor.selectProfileSlot(kSlot_Distance, PID_PRIMARY);
 
-		rightBackMotor.configOpenloopRamp(0.5);
-		rightFrontMotor.configOpenloopRamp(0.5);
-		leftBackMotor.configOpenloopRamp(0.5);
-		leftFrontMotor.configOpenloopRamp(0.5);
 
-		/** Config Objects for motor controllers */
-		TalonFXConfiguration _leftConfig = new TalonFXConfiguration();
-		TalonFXConfiguration _rightConfig = new TalonFXConfiguration();
+        leftFrontMotor.config_kP(0, DISTANCE_kP, kTimeoutMs);
+        leftFrontMotor.config_kI(0, DISTANCE_kI, kTimeoutMs);
+        leftFrontMotor.config_kD(0, DISTANCE_kD, kTimeoutMs);
+        leftFrontMotor.config_kF(0, DISTANCE_kF, kTimeoutMs);
 
-		rightFrontMotor.set(TalonFXControlMode.PercentOutput, 0);
-		leftBackMotor.set(TalonFXControlMode.PercentOutput, 0);
+        rightFrontMotor.config_kP(0, DISTANCE_kP, kTimeoutMs);
+        rightFrontMotor.config_kI(0, DISTANCE_kI, kTimeoutMs);
+        rightFrontMotor.config_kD(0, DISTANCE_kD, kTimeoutMs);
+        rightFrontMotor.config_kF(0, DISTANCE_kF, kTimeoutMs);
 
-		/* Set Neutral Mode */
-		leftBackMotor.setNeutralMode(NeutralMode.Brake);
-		rightFrontMotor.setNeutralMode(NeutralMode.Brake);
 
-		/** Feedback Sensor Configuration */
+        leftFrontMotor.configMotionAcceleration(MM_ACC, kTimeoutMs);
+        leftFrontMotor.configMotionCruiseVelocity(MM_VEL, kTimeoutMs);
 
-		/* Configure the left Talon's selected sensor as local Integrated Sensor */
-		_leftConfig.primaryPID.selectedFeedbackSensor = TalonFXFeedbackDevice.IntegratedSensor.toFeedbackDevice(); // Local
-																													// Feedback
-																													// Source
+        rightFrontMotor.configMotionAcceleration(MM_ACC, kTimeoutMs);
+        rightFrontMotor.configMotionCruiseVelocity(MM_VEL, kTimeoutMs);
 
-		/*
-			* Configure the Remote Talon's selected sensor as a remote sensor for the right
-			* Talon
-			*/
-		_rightConfig.remoteFilter0.remoteSensorDeviceID = leftBackMotor.getDeviceID(); // Device ID of Source
-		_rightConfig.remoteFilter0.remoteSensorSource = RemoteSensorSource.TalonFX_SelectedSensor; // Remote Feedback
-																									// Source
 
-		/*
-			* Now that the Left sensor can be used by the master Talon,
-			* set up the Left (Aux) and Right (Master) distance into a single
-			* Robot distance as the Master's Selected Sensor 0.
-			*/
-		setRobotDistanceConfigs(_rightInvert, _rightConfig);
+        leftFrontMotor.setSelectedSensorPosition(0, PID_PRIMARY, kTimeoutMs);
+        rightFrontMotor.setSelectedSensorPosition(0, PID_PRIMARY, kTimeoutMs);
 
-		/*
-			* Setup difference signal to be used for turn when performing Drive Straight
-			* with encoders
-			*/
-		setRobotTurnConfigs(_rightInvert, _rightConfig);
 
-		/* Configure neutral deadband */
-		_rightConfig.neutralDeadband = kNeutralDeadband;
-		_leftConfig.neutralDeadband = kNeutralDeadband;
+    }
+	
+	// public void initMotionMagic() {
 
-		/* Motion Magic Configurations */
-		_rightConfig.motionAcceleration = MM_ACC;
-		_rightConfig.motionCruiseVelocity = MM_VEL;
+	// 	// leftBackMotor.configFactoryDefault();
+	// 	// rightFrontMotor.configFactoryDefault();
 
-		/**
-		 * Max out the peak output (for all modes).
-		 * However you can limit the output of a given PID object with
-		 * configClosedLoopPeakOutput().
-		 */
-		_leftConfig.peakOutputForward = +1.0;
-		_leftConfig.peakOutputReverse = -1.0;
-		_rightConfig.peakOutputForward = +1.0;
-		_rightConfig.peakOutputReverse = -1.0;
+	// 	TalonFXInvertType _leftInvert = TalonFXInvertType.CounterClockwise; // Same as invert = "false"
+	// 	TalonFXInvertType _rightInvert = TalonFXInvertType.Clockwise; // Same as invert = "true"
 
-		/* FPID Gains for distance servo */
-		_rightConfig.slot0.kP = DISTANCE_kP;
-		_rightConfig.slot0.kI = DISTANCE_kI;
-		_rightConfig.slot0.kD = DISTANCE_kD;
-		_rightConfig.slot0.kF = DISTANCE_kF;
-		_rightConfig.slot0.integralZone = DISTANCE_kIzone;
-		_rightConfig.slot0.closedLoopPeakOutput = DISTANCE_PEAK;
-		_rightConfig.slot0.allowableClosedloopError = 0;
+	// 	// /* Configure output and sensor direction */
+	// 	// leftFrontMotor.setInverted(_leftInvert);
+	// 	// leftBackMotor.setInverted(_leftInvert);
+	// 	// rightFrontMotor.setInverted(_rightInvert);
+	// 	// rightBackMotor.setInverted(_rightInvert);
 
-		/* FPID Gains for turn servo */
-		_rightConfig.slot1.kP = TURN_kP;
-		_rightConfig.slot1.kI = TURN_kI;
-		_rightConfig.slot1.kD = TURN_kD;
-		_rightConfig.slot1.kF = TURN_kF;
-		_rightConfig.slot1.integralZone = TURN_kIzone;
-		_rightConfig.slot1.closedLoopPeakOutput = TURN_PEAK;
-		_rightConfig.slot1.allowableClosedloopError = 0;
+	// 	// rightBackMotor.follow(rightFrontMotor);
+	// 	// leftFrontMotor.follow(leftBackMotor);
 
-		int closedLoopTimeMs = 1;
-		_rightConfig.slot0.closedLoopPeriod = closedLoopTimeMs;
-		_rightConfig.slot1.closedLoopPeriod = closedLoopTimeMs;
-		_rightConfig.slot2.closedLoopPeriod = closedLoopTimeMs;
-		_rightConfig.slot3.closedLoopPeriod = closedLoopTimeMs;
+	// 	// rightBackMotor.configOpenloopRamp(0.5);
+	// 	// rightFrontMotor.configOpenloopRamp(0.5);
+	// 	// leftBackMotor.configOpenloopRamp(0.5);
+	// 	// leftFrontMotor.configOpenloopRamp(0.5);
 
-		leftBackMotor.configAllSettings(_leftConfig);
-		rightFrontMotor.configAllSettings(_rightConfig);
+	// 	// /** Config Objects for motor controllers */
+	// 	TalonFXConfiguration _leftConfig = new TalonFXConfiguration();
+	// 	TalonFXConfiguration _rightConfig = new TalonFXConfiguration();
 
-		/* Set status frame periods to ensure we don't have stale data */
-		rightFrontMotor.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 20, kTimeoutMs);
-		rightFrontMotor.setStatusFramePeriod(StatusFrame.Status_13_Base_PIDF0, 20, kTimeoutMs);
-		rightFrontMotor.setStatusFramePeriod(StatusFrame.Status_14_Turn_PIDF1, 20, kTimeoutMs);
-		rightFrontMotor.setStatusFramePeriod(StatusFrame.Status_10_Targets, 20, kTimeoutMs);
-		leftBackMotor.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 5, kTimeoutMs);
+	// 	// rightFrontMotor.set(TalonFXControlMode.PercentOutput, 0);
+	// 	// leftBackMotor.set(TalonFXControlMode.PercentOutput, 0);
 
-		/* Initialize */
-		rightFrontMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_Targets, 10);
-		resetEncoders();
+	// 	// /* Set Neutral Mode */
+	// 	// leftBackMotor.setNeutralMode(NeutralMode.Brake);
+	// 	// leftFrontMotor.setNeutralMode(NeutralMode.Brake);
+	// 	// rightFrontMotor.setNeutralMode(NeutralMode.Brake);
+	// 	// rightBackMotor.setNeutralMode(NeutralMode.Brake);
+
+	// 	/** Feedback Sensor Configuration */
+
+	// 	/* Configure the left Talon's selected sensor as local Integrated Sensor */
+	// 	_leftConfig.primaryPID.selectedFeedbackSensor = TalonFXFeedbackDevice.IntegratedSensor.toFeedbackDevice(); // Local
+	// 																												// Feedback
+	// 																												// Source
+
+	// 	/*
+	// 		* Configure the Remote Talon's selected sensor as a remote sensor for the right
+	// 		* Talon
+	// 		*/
+	// 	_rightConfig.remoteFilter0.remoteSensorDeviceID = leftBackMotor.getDeviceID(); // Device ID of Source
+	// 	_rightConfig.remoteFilter0.remoteSensorSource = RemoteSensorSource.TalonFX_SelectedSensor; // Remote Feedback
+	// 																								// Source
+
+	// 	/*
+	// 		* Now that the Left sensor can be used by the master Talon,
+	// 		* set up the Left (Aux) and Right (Master) distance into a single
+	// 		* Robot distance as the Master's Selected Sensor 0.
+	// 		*/
+	// 	setRobotDistanceConfigs(_rightInvert, _rightConfig);
+
+	// 	/*
+	// 		* Setup difference signal to be used for turn when performing Drive Straight
+	// 		* with encoders
+	// 		*/
+	// 	setRobotTurnConfigs(_rightInvert, _rightConfig);
+
+	// 	/* Configure neutral deadband */
+	// 	_rightConfig.neutralDeadband = kNeutralDeadband;
+	// 	_leftConfig.neutralDeadband = kNeutralDeadband;
+
+	// 	/* Motion Magic Configurations */
+	// 	_rightConfig.motionAcceleration = MM_ACC;
+	// 	_rightConfig.motionCruiseVelocity = MM_VEL;
+
+	// 	/**
+	// 	 * Max out the peak output (for all modes).
+	// 	 * However you can limit the output of a given PID object with
+	// 	 * configClosedLoopPeakOutput().
+	// 	 */
+	// 	_leftConfig.peakOutputForward = +1.0;
+	// 	_leftConfig.peakOutputReverse = -1.0;
+	// 	_rightConfig.peakOutputForward = +1.0;
+	// 	_rightConfig.peakOutputReverse = -1.0;
+
+	// 	/* FPID Gains for distance servo */
+	// 	_rightConfig.slot0.kP = DISTANCE_kP;
+	// 	_rightConfig.slot0.kI = DISTANCE_kI;
+	// 	_rightConfig.slot0.kD = DISTANCE_kD;
+	// 	_rightConfig.slot0.kF = DISTANCE_kF;
+	// 	_rightConfig.slot0.integralZone = DISTANCE_kIzone;
+	// 	_rightConfig.slot0.closedLoopPeakOutput = DISTANCE_PEAK;
+	// 	_rightConfig.slot0.allowableClosedloopError = 0;
+
+	// 	/* FPID Gains for turn servo */
+	// 	_rightConfig.slot1.kP = TURN_kP;
+	// 	_rightConfig.slot1.kI = TURN_kI;
+	// 	_rightConfig.slot1.kD = TURN_kD;
+	// 	_rightConfig.slot1.kF = TURN_kF;
+	// 	_rightConfig.slot1.integralZone = TURN_kIzone;
+	// 	_rightConfig.slot1.closedLoopPeakOutput = TURN_PEAK;
+	// 	_rightConfig.slot1.allowableClosedloopError = 0;
+
+	// 	int closedLoopTimeMs = 1;
+	// 	_rightConfig.slot0.closedLoopPeriod = closedLoopTimeMs;
+	// 	_rightConfig.slot1.closedLoopPeriod = closedLoopTimeMs;
+	// 	_rightConfig.slot2.closedLoopPeriod = closedLoopTimeMs;
+	// 	_rightConfig.slot3.closedLoopPeriod = closedLoopTimeMs;
+
+	// 	leftBackMotor.configAllSettings(_leftConfig);
+	// 	rightFrontMotor.configAllSettings(_rightConfig);
+
+	// 	/* Set status frame periods to ensure we don't have stale data */
+	// 	rightFrontMotor.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 20, kTimeoutMs);
+	// 	rightFrontMotor.setStatusFramePeriod(StatusFrame.Status_13_Base_PIDF0, 20, kTimeoutMs);
+	// 	rightFrontMotor.setStatusFramePeriod(StatusFrame.Status_14_Turn_PIDF1, 20, kTimeoutMs);
+	// 	rightFrontMotor.setStatusFramePeriod(StatusFrame.Status_10_Targets, 20, kTimeoutMs);
+	// 	leftBackMotor.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 5, kTimeoutMs);
+
+	// 	/* Initialize */
+	// 	rightFrontMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_Targets, 10);
+	// 	resetEncoders();
 
 		
 
-		rightFrontMotor.selectProfileSlot(kSlot_Distance, PID_PRIMARY);
-		rightFrontMotor.selectProfileSlot(kSlot_Turning, PID_TURN);
+	// 	rightFrontMotor.selectProfileSlot(kSlot_Distance, PID_PRIMARY);
+	// 	rightFrontMotor.selectProfileSlot(kSlot_Turning, PID_TURN);
 
 
-	}
+	// }
 
 	public void setRobotDistanceConfigs(TalonFXInvertType masterInvertType, TalonFXConfiguration masterConfig) {
 		/* Check if we're inverted */
@@ -468,8 +527,10 @@ rightBackMotor = new WPI_TalonFX(4);
 
 		double target_turn = rightFrontMotor.getSelectedSensorPosition(1);
 
-		rightFrontMotor.set(TalonFXControlMode.MotionMagic, m_distance, DemandType.AuxPID, target_turn);
-		leftBackMotor.follow(rightFrontMotor, FollowerType.AuxOutput1);
+		rightFrontMotor.set(ControlMode.MotionMagic, m_distance);
+		leftFrontMotor.set(ControlMode.MotionMagic, m_distance);
+		// rightFrontMotor.set(TalonFXControlMode.MotionMagic, m_distance, DemandType.AuxPID, target_turn);
+		// leftBackMotor.follow(rightFrontMotor, FollowerType.AuxOutput1);
 	}
 
 	public void setRobotTurnConfigs(TalonFXInvertType masterInvertType, TalonFXConfiguration masterConfig) {
@@ -509,7 +570,7 @@ rightBackMotor = new WPI_TalonFX(4);
      */
     public DifferentialDriveWheelSpeeds getWheelSpeeds() {
         return new DifferentialDriveWheelSpeeds(
-			leftBackMotor.getSelectedSensorVelocity() * DriveConstants.kEncoderDistancePerPulse,
+			leftFrontMotor.getSelectedSensorVelocity() * DriveConstants.kEncoderDistancePerPulse,
                 rightFrontMotor.getSelectedSensorVelocity() * DriveConstants.kEncoderDistancePerPulse);
     }
 
@@ -533,10 +594,9 @@ rightBackMotor = new WPI_TalonFX(4);
     public void tankDriveVolts(double leftVolts, double rightVolts) {
         m_leftMotors.setVoltage(leftVolts);
         m_rightMotors.setVoltage(rightVolts);
-        SmartDashboard.putNumber("Left Encoder", leftBackMotor.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("Left Encoder", leftFrontMotor.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("Right Encoder", rightFrontMotor.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("HEADING", m_odometry.getPoseMeters().getRotation().getDegrees());
-        
     }
 
     /**
@@ -544,7 +604,7 @@ rightBackMotor = new WPI_TalonFX(4);
      */
 
     public void setEncoders(int left, int right) {
-        leftBackMotor.setSelectedSensorPosition(left);
+        leftFrontMotor.setSelectedSensorPosition(left);
         rightFrontMotor.setSelectedSensorPosition(right);
     }
 
@@ -564,7 +624,7 @@ rightBackMotor = new WPI_TalonFX(4);
 
 
 	public double getLeftEncoder() {
-		return leftBackMotor.getSelectedSensorPosition();
+		return leftFrontMotor.getSelectedSensorPosition();
 	}
 
 	public double getRightEncoder() {

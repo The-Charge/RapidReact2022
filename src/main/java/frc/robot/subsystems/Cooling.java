@@ -20,14 +20,11 @@ public class Cooling implements Subsystem {
         coolingSolenoid.set(false);
     }
     // Put code here to be run every loop
-
     public void cool() {
         SmartDashboard.putBoolean("Drivetrain Temp", m_drivetrain.checkTemp());
         if (m_drivetrain.checkTemp())
             coolingSolenoid.set(true);
         else
             coolingSolenoid.set(false);
-        // Put methods for controlling this subsystem
     }
-    // here. Call these from Commands.
 }
